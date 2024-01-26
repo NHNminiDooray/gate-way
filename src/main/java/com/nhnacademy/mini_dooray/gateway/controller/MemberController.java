@@ -37,10 +37,10 @@ public class MemberController {
 
     }
 
-    @PostMapping("/login")
-    public String doLogin(LoginRequestDto loginRequestDto){
-        memberService.loginMember(loginRequestDto);
-        return "member";
-    }
+//    @PostMapping("/login")
+//    public String doLogin(LoginRequestDto loginRequestDto){
+//        memberService.loginMember(loginRequestDto);
+//        return "member";
+//    }
 
 }

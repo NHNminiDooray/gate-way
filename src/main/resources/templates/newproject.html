@@ -11,27 +11,37 @@
     <div class="row">
         <div class="col-md-4 offset-md-4">
             <h1 class="h3 mt-5 mb-4 fw-normal">프로젝트 등록</h1>
-            <form th:action="@{/projects}" method="post">
+            <form th:action="@{/projects/register}" method="post">
                 <div class="form-floating mb-3">
                     <label>프로젝트 이름</label>
-                    <input type="text" class="form-control" name="name" placeholder="프로젝트 이름" required>
+                    <input type="text" class="form-control" name="projectName" placeholder="프로젝트 이름" required>
                 </div>
                 <div class="form-floating mb-3">
                     <label>프로젝트 상태</label>
-                    <input type="text" class="form-control" name="status" placeholder="프로젝트 상태" required>
+                    <select class="form-control" name="projectStatusId" required>
+                        <option value=1>활성</option>
+                        <option value=2>휴면</option>
+                        <option value=3>종료</option>
+                    </select>
                 </div>
 
                 <div class="form-floating mt-5 mb-3">
-                    <label>프로젝트 멤버 1</label>
-                    <input type="text" class="form-control" name="member1" placeholder="멤버 1" required>
+                    <label>프로젝트 멤버 1 등록</label>
+                    <select class="form-control" name="memberId1" required>
+                        <option th:each="member : ${registerRequestDto.requestMembers}" th:value="${member.projectMemberId}" th:text="${member.projectMemberId}"></option>
+                    </select>
                 </div>
                 <div class="form-floating mb-3">
-                    <label>프로젝트 멤버 2</label>
-                    <input type="text" class="form-control" name="member2" placeholder="멤버 2" required>
+                    <label>프로젝트 멤버 2 등록</label>
+                    <select class="form-control" name="memberId2" required>
+                        <option th:each="member : ${registerRequestDto.requestMembers}" th:value="${member.projectMemberId}" th:text="${member.projectMemberId}"></option>
+                    </select>
                 </div>
                 <div class="form-floating mb-3">
-                    <label>프로젝트 멤버 3</label>
-                    <input type="text" class="form-control" name="member3" placeholder="멤버 3" required>
+                    <label>프로젝트 멤버 3 등록</label>
+                    <select class="form-control" name="memberId3" required>
+                        <option th:each="member : ${registerRequestDto.requestMembers}" th:value="${member.projectMemberId}" th:text="${member.projectMemberId}"></option>
+                    </select>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary mt-3 mb-3" type="submit">등록</button>
             </form>

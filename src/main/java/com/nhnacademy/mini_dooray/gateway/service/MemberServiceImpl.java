@@ -21,8 +21,8 @@ public class MemberServiceImpl implements MemberService{
         memberAdaptor.createMember(createMemberDto);
     }
 
-    @Override
-    public void loginMember(LoginRequestDto loginRequestDto) {
-        memberAdaptor.loginMember(loginRequestDto);
-    }
+//    @Override
+//    public void loginMember(LoginRequestDto loginRequestDto) {
+//        memberAdaptor.loginMember(loginRequestDto);
+//    }
 }
