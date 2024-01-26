@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>업무 조회</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <p class="mt-3 mb-3 card-text h2">업무 상세 내역</p>
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-text">등록자: <span th:text="${task.id}"></span></p>
+                    <p class="card-text">태그: <span th:text="${????}"></span></p>
+                    <p class="card-text">기간: <span th:text="${????}"></span></p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text h3">제목: <span th:text="${task.title}"></span></p>
+                    <hr class="my-4">
+                    <p class="card-text">내용: <span th:text="${task.content}"></span></p>
+                    <hr class="my-4">
+
+                </div>
+                <div class="card-footer">
+                    <div th:each="comment : ${task.comments}">
+                        <p class="card-text">댓글 작성자: <span th:text="${comment.memberId}"></span></p>
+                        <p class="card-text">댓글: <span th:text="${comment.content}"></span></p>
+                        <hr class="my-4">
+                    </div>
+
+                    <form th:action="@{'/projects/'+${project.id}+'/tasks/' + ${task.id} + '/comments'}" method="post">
+                        <div class="form-group">
+                            <label for="comment">댓글 추가:</label>
+                            <input type="text" class="form-control" id="comment" name="comment" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">댓글 작성</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
