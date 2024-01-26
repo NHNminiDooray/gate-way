@@ -1,7 +1,7 @@
 package com.nhnacademy.mini_dooray.gateway.controller;
 
-import com.nhnacademy.mini_dooray.gateway.domain.CreateMemberDto;
-import com.nhnacademy.mini_dooray.gateway.domain.LoginRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.CreateMemberDto;
+import com.nhnacademy.mini_dooray.gateway.dto.LoginRequestDto;
 import com.nhnacademy.mini_dooray.gateway.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
