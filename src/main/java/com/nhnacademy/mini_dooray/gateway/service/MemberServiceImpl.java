@@ -1,7 +1,9 @@
 package com.nhnacademy.mini_dooray.gateway.service;
 
 import com.nhnacademy.mini_dooray.gateway.adaptor.MemberAdaptor;
+
 import com.nhnacademy.mini_dooray.gateway.dto.CreateMemberDto;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,5 +19,10 @@ public class MemberServiceImpl implements MemberService{
     public void createMember(CreateMemberDto createMemberDto) {
         createMemberDto.setMemberStatus("가입");
         memberAdaptor.createMember(createMemberDto);
+    }
+
+    @Override
+    public void loginMember(LoginRequestDto loginRequestDto) {
+        memberAdaptor.loginMember(loginRequestDto);
     }
 }
