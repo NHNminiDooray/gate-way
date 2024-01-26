@@ -28,60 +28,8 @@
                 </tr>
                 </tbody>
             </table>
-            <label>업무</label>
-            <div>
-                <div class="btn-group mb-3">
-                    <form th:action="@{'/projects/'+${project.id}+'/tasks'}" method="get">
-                        <input class="btn btn-primary" type="submit" value="등록"/>
-                    </form>
-
-                    <form th:action="@{'/projects/'+${project.id}+'/tasks'}" method="get">
-                        <input class="btn btn-primary" type="submit" value="수정"/>
-                    </form>
-
-                    <form th:action="@{'/projects/'+${project.id}+'/tasks'+${task.taskId}}" method="post">
-                        <input class="btn btn-primary" type="submit" value="삭제"/>
-                    </form>
-                </div>
-            </div>
-            <label>태그</label>
-            <div>
-                <div class="btn-group mb-3">
-                    <form th:action="@{'/projects/'+${project.id}+'/tasks'+${task.taskId}+'/comments'}" method="get">
-                        <input class="btn btn-primary" type="submit" value="등록"/>
-                    </form>
-
-                    <form th:action="@{'/projects/'+${project.id}+'/tasks'+${task.taskId}+'/comments'}" method="get">
-                        <input class="btn btn-primary" type="submit" value="수정"/>
-                    </form>
-
-                    <form th:action="@{'/projects/'+${project.id}+'/tasks'+${task.taskId}+'/comments'+${comment.commentId}}"
-                          method="post">
-                        <input class="btn btn-primary" type="submit" value="삭제"/>
-                    </form>
-                </div>
-            </div>
-            <label>마일스톤</label>
-            <div>
-                <div class="btn-group mb-3">
-                    <form th:action="@{'/projects/'+${project.id}+'/milestones'}" method="get">
-                        <input class="btn btn-primary" type="submit" value="등록"/>
-                    </form>
-
-                    <form th:action="@{'/projects/'+${project.id}+'/milestones'}" method="get">
-                        <input class="btn btn-primary" type="submit" value="수정"/>
-                    </form>
-
-                    <form th:action="@{'/projects/'+${project.id}+'/milestones'+${milestones.milestoneId}}" method="post">
-                        <input class="btn btn-primary" type="submit" value="삭제"/>
-                    </form>
-                </div>
-            </div>
             <form th:action="@{/projects}" method="get">
                 <input class="mt-3 btn btn-primary" type="submit" value="프로젝트 생성"/>
-            </form>
-            <form th:if="${admin}" th:action="@{'/projects/' + ${project.id}+'/manage'}" method="get">
-                <input class="mt-3 btn btn-primary" type="submit" value="회원 관리"/>
             </form>
         </div>
     </div>
