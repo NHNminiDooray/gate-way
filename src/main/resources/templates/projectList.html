@@ -21,15 +21,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="project : ${projectList}">
+                <tr th:each="project : ${projectIndexList}">
                     <td>
-                        <a th:href="@{'/projects/' + ${project.id}}"><span th:text="${project.title}"></span></a>
+                        <a th:href="@{'/projects/' + ${project.projectId}+'/tasks'}"><span th:text="${project.projectName}"></span></a>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <form th:action="@{/projects}" method="get">
+            <form th:action="@{/projects/register}" method="get" class="mb-3">
                 <input class="mt-3 btn btn-primary" type="submit" value="프로젝트 생성"/>
+            </form>
+            <form th:action="@{/logout}" method="get" class="mb-3">
+                <input class="btn btn-danger" type="submit" value="로그아웃"/>
             </form>
         </div>
     </div>
