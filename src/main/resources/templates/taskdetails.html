@@ -29,6 +29,14 @@
                     <div th:each="comment : ${task.comments}">
                         <p class="card-text">댓글 작성자: <span th:text="${comment.memberId}"></span></p>
                         <p class="card-text">댓글: <span th:text="${comment.content}"></span></p>
+
+                        <div th:if="${comment.memberId == #authentication.principal.username}" class="mb-3">
+                            <a th:href="@{'/projects/'+${project.id}+'/tasks/' + ${task.id} + '/comments/' + ${comment.id} + '/edit'}"
+                               class="btn btn-sm btn-warning">댓글 수정</a>
+
+                            <a th:href="@{'/projects/'+${project.id}+'/tasks/' + ${task.id} + '/comments/' + ${comment.id} + '/delete'}"
+                               class="btn btn-sm btn-danger">댓글 삭제</a>
+                        </div>
                         <hr class="my-4">
                     </div>
 
@@ -39,6 +47,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">댓글 작성</button>
                     </form>
+
                 </div>
             </div>
         </div>

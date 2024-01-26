@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <h1 class="h3 mt-5 mb-4 fw-normal">관리</h1>
+
+            <label>태그 목록</label>
+            <table class="table table-bordered mb-5">
+                <thead class="thead-light">
+                <tr>
+                    <th>태그</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tag : ${tags}">
+                    <td th:text="${tag.tag}"></td>
+                    <td>
+                        <form th:action="@{'/projects/'+${project.id}+'/tasks/'+${task.taskId}+'/comments/'+${tag.tagId}+'/edit'}"
+                              method="get">
+                            <input class="btn btn-warning" type="submit" value="수정"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{'/projects/'+${project.id}+'/tasks/'+${task.taskId}+'/comments/'+${tag.tagId}+'/delete'}"
+                              method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <input class="btn btn-danger" type="submit" value="삭제"/>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <form th:action="@{'/projects/'+${project.id}+'/tasks/'+${task.taskId}+'/comments'}" method="post">
+                <h4 class="mt-3 mb-3">태그 등록</h4>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" th:name="tag" placeholder="태그">
+                    <div class="input-group-append">
+                        <input class="btn btn-primary" type="submit" value="등록"/>
+                    </div>
+                </div>
+            </form>
+            <hr class="my-4">
+            <label>마일스톤 목록</label>
+            <table class="table table-bordered mb-5">
+                <thead class="thead-light">
+                <tr>
+                    <th>마일스톤</th>
+                    <th>시작일</th>
+                    <th>만기일</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="milestone : ${milestones}">
+                    <td th:text="${milestone.milestoneName}"></td>
+                    <td th:text="${milestone.startDate}"></td>
+                    <td th:text="${milestone.endDate}"></td>
+                    <td>
+                        <form th:action="@{'/projects/'+${project.id}+'/milestones/'+${milestone.milestoneId}+'/edit'}" method="get">
+                            <input class="btn btn-warning" type="submit" value="수정"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{'/projects/'+${project.id}+'/milestones/'+${milestone.milestoneId}+'/delete'}" method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <input class="btn btn-danger" type="submit" value="삭제"/>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <form th:action="@{'/projects/'+${project.id}+'/milestones'}" method="post">
+                <h4 class="mt-3 mb-3">마일스톤 등록</h4>
+                <div class="form-group">
+                    <label for="milestoneName">마일스톤 이름</label>
+                    <input type="text" class="form-control" id="milestoneName" th:name="milestoneName" placeholder="마일스톤 이름" required>
+                </div>
+                <div class="form-group">
+                    <label for="startDate">시작일</label>
+                    <input type="date" class="form-control" id="startDate" th:name="startDate" placeholder="시작일" required>
+                </div>
+                <div class="form-group">
+                    <label for="endDate">만기일</label>
+                    <input type="date" class="form-control" id="endDate" th:name="endDate" placeholder="만기일" required>
+                </div>
+                <button type="submit" class="btn btn-primary">등록</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
