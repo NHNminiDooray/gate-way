@@ -1,9 +1,8 @@
 package com.nhnacademy.mini_dooray.gateway.adaptor;
 
 import com.nhnacademy.mini_dooray.gateway.config.MemberAdaptorProperties;
-import com.nhnacademy.mini_dooray.gateway.domain.CreateMemberDto;
-import com.nhnacademy.mini_dooray.gateway.domain.LoginRequestDto;
-import java.lang.reflect.Member;
+import com.nhnacademy.mini_dooray.gateway.dto.CreateMemberDto;
+import com.nhnacademy.mini_dooray.gateway.dto.LoginRequestDto;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
