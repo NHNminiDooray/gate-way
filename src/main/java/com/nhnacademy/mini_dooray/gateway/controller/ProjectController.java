@@ -18,8 +18,8 @@ public class ProjectController {
 //        model.addAttribute("projectList", projectList);
         return "projectList";
     }
-    @GetMapping("/create")
-    public String showProjectCreationForm() {
-        return "newproject";
-    }
+//    @GetMapping("/create")
+//    public String showProjectCreationForm() {
+//        return "newproject";
+//    }
 }
