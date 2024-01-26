@@ -5,7 +5,8 @@ import com.nhnacademy.mini_dooray.gateway.dto.LoginRequestDto;
 
 public interface MemberAdaptor {
 
-    LoginRequestDto getMember(String id);
 
     void createMember(CreateMemberDto createMemberDto);
+    void loginMember(LoginRequestDto loginRequestDto);
+
 }
