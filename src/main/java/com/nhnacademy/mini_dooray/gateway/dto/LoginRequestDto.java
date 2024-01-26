@@ -1,4 +1,4 @@
-package com.nhnacademy.mini_dooray.gateway.domain;
+package com.nhnacademy.mini_dooray.gateway.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateMemberDto {
-    String memberId;
-    String email;
-    String password;
-    String memberStatus;
+public class LoginRequestDto {
+    private String memberId;
+    private String password;
 }

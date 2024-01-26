@@ -1,8 +1,8 @@
 package com.nhnacademy.mini_dooray.gateway.service;
 
 import com.nhnacademy.mini_dooray.gateway.adaptor.MemberAdaptor;
-import com.nhnacademy.mini_dooray.gateway.domain.CreateMemberDto;
-import com.nhnacademy.mini_dooray.gateway.domain.LoginRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.CreateMemberDto;
+import com.nhnacademy.mini_dooray.gateway.dto.LoginRequestDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,4 +24,6 @@ public class MemberServiceImpl implements MemberService{
     public void loginMember(LoginRequestDto loginRequestDto) {
         memberAdaptor.loginMember(loginRequestDto);
     }
+
+
 }
