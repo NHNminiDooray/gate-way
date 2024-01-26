@@ -22,19 +22,24 @@ public class MemberController {
     @GetMapping("/create")
     public String getCreateMember(Model model){
         //model.addAttribute("createMemberDto", new CreateMemberDto());
-        return "signup";}
+        return "signup";
+    }
 
+    @GetMapping("/login")
+    public String getLogin(){
+        return "login";
+    }
 
     @PostMapping("/create")
-    public String doCreateMember( CreateMemberDto createMemberDto){
-
+    public String doCreateMember(CreateMemberDto createMemberDto){
         memberService.createMember(createMemberDto);
         return "projectList";
 
     }
+
     @PostMapping("/login")
-    public String doLogin(@RequestBody LoginRequestDto loginRequestDto){
-        //model.addAttribute("member", member);
+    public String doLogin(LoginRequestDto loginRequestDto){
+        memberService.loginMember(loginRequestDto);
         return "member";
     }
 

@@ -6,7 +6,8 @@ import java.lang.reflect.Member;
 
 public interface MemberAdaptor {
 
-    LoginRequestDto getMember(String id);
 
     void createMember(CreateMemberDto createMemberDto);
+    void loginMember(LoginRequestDto loginRequestDto);
+
 }
