@@ -1,6 +1,7 @@
 package com.nhnacademy.mini_dooray.gateway.service;
 
 import com.nhnacademy.mini_dooray.gateway.adaptor.TaskAdaptor;
+import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
 import java.util.List;
@@ -16,7 +17,13 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public List<TaskIndexListResponseDto> getAllTasks(TaskRequestDto taskRequestDto){
-         return taskAdaptor.getAllTasks(taskRequestDto);
+    public List<TaskIndexListResponseDto> getAllTasks(Long projectId){
+         return taskAdaptor.getAllTasks(projectId);
      }
+
+    @Override
+    public TaskDetailResponseDto getTaskDetails(Long projectId, Long taskId) {
+        return taskAdaptor.getTaskDetails(projectId,taskId);
+    }
+
 }

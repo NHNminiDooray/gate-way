@@ -2,8 +2,6 @@ package com.nhnacademy.mini_dooray.gateway.controller;
 
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
-import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectRegisterRequestDto;
-import com.nhnacademy.mini_dooray.gateway.dto.project_member.ProjectMemberRequestDto;
 import com.nhnacademy.mini_dooray.gateway.exception.DuplicateMemberException;
 import com.nhnacademy.mini_dooray.gateway.service.ProjectService;
 import java.util.List;
@@ -34,7 +32,7 @@ public class ProjectController {
         model.addAttribute("projectList", projectList);
         return "projectList";
     }
-    @GetMapping
+    @GetMapping("/create")
     public String showProjectRegistrationForm(Model model) {
         return "newproject";
     }
@@ -51,16 +49,8 @@ public class ProjectController {
             if (memberId1.equals(memberId2) || memberId1.equals(memberId3) || memberId2.equals(memberId3)) {
                 throw new DuplicateMemberException("멤버는 중복될 수 없습니다.");
             }
-            ProjectRegisterRequestDto requestDto =
-                    new ProjectRegisterRequestDto(
-                            projectStatusId,
-                            projectName,
-                            List.of(new ProjectMemberRequestDto(memberId1,"멤버"),
-                                    new ProjectMemberRequestDto(memberId2,"멤버"),
-                                    new ProjectMemberRequestDto(memberId3,"멤버")));
-            log.info("projectRegisterResponseDto : {}", requestDto);
 
-            projectService.registerProject(requestDto);
+            projectService.registerProject(projectStatusId,projectName,List.of(memberId1,memberId2,memberId3));
 
             return "redirect:/projects";
         } catch (DuplicateMemberException e) {

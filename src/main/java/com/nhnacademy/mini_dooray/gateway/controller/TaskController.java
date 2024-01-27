@@ -1,5 +1,6 @@
 package com.nhnacademy.mini_dooray.gateway.controller;
 
+import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
 import com.nhnacademy.mini_dooray.gateway.service.TaskService;
@@ -20,13 +21,9 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-
     @GetMapping
     public String showTaskList(Model model, @PathVariable Long projectId) {
-
-        TaskRequestDto taskRequestDto;
-        List<TaskIndexListResponseDto> taskList = taskService.getAllTasks(new TaskRequestDto());
-
+        List<TaskIndexListResponseDto> taskList =taskService.getAllTasks(projectId);
         model.addAttribute("projectId", projectId);
         model.addAttribute("taskList", taskList);
 
@@ -34,11 +31,9 @@ public class TaskController {
     }
     @GetMapping("/{taskId}")
     public String showTaskDetails(Model model, @PathVariable Long projectId, @PathVariable Long taskId) {
-
-        //taskId로 TaskDetailResponseDto 받아서 모델로 넘겨주세영
-//        model.addAttribute("task", task);
-
+        TaskDetailResponseDto task =  taskService.getTaskDetails(projectId,taskId);
+        model.addAttribute("task", task);
         return "taskdetails";
     }
-
+    //todo
 }
