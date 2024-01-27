@@ -34,7 +34,7 @@ public class ProjectController {
         model.addAttribute("projectList", projectList);
         return "projectList";
     }
-    @GetMapping
+    @GetMapping("/create")
     public String showProjectRegistrationForm(Model model) {
         return "newproject";
     }

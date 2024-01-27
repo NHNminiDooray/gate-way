@@ -14,42 +14,48 @@
             <p class="mt-3 mb-3 card-text h2">업무 상세 내역</p>
             <div class="card">
                 <div class="card-header">
-                    <p class="card-text">등록자: <span th:text="${taskId}"></span></p>
-
-                    <p class="card-text">태그: <span th:text="${????}"></span></p>
-                    <form th:action="@{/projects/{projectId}/manage/tag/create}" method="get" class="mb-3">
-                        <input class="mt-3 btn btn-primary" type="submit" value="태그 추가"/>
+                    <p class="card-text">등록자: <span th:text="${taskDetails.taskWriteMemberId}"></span></p>
+                    <p class="card-text">태그:
+                        <span th:each="tag : ${tagList}" th:text="${tag.tagName}" th:if="${not #lists.isEmpty(tagList)}"></span>
+                    </p>
+                    <form th:action="@{'/projects/' + ${projectId} + '/tasks/'+{taskId}+'/manage/tag'}" method="get" class="mb-3">
+                        <input class="mt-3 btn btn-primary" type="submit" value="태그 관리"/>
                     </form>
 
-                    <p class="card-text">기간: <span th:text="${????}"></span></p>
-                    <!-- 기간이 없을시-->
-                    <form th:action="@{/projects/{projectId}/manage/milestone/create}" method="get" class="mb-3">
+                    <p class="card-text" th:text="${mileStone.startPeriod != null and mileStone.endPeriod != null ? '기간: ' + mileStone.startPeriod + ' ~ ' + mileStone.endPeriod : '기간: 없음'}"></p>
+
+                    <form th:unless="${mileStone.startPeriod != null and mileStone.endPeriod != null}" th:action="@{'/projects/' + ${projectId} + '/tasks/' + ${taskId} + '/manage/milestone'}" method="get" class="mb-3">
                         <input class="mt-3 btn btn-primary" type="submit" value="마일스톤 추가"/>
+                    </form>
+
+                    <form th:if="${mileStone.startPeriod != null and mileStone.endPeriod != null}" th:action="@{'/projects/' + ${projectId} + '/tasks/' + ${taskId} + '/manage/milestone/delete'}" method="post" class="mb-3">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <input class="mt-3 btn btn-danger" type="submit" value="마일스톤 삭제"/>
                     </form>
                 </div>
                 <div class="card-body">
-                    <p class="card-text h3">제목: <span th:text="${task.title}"></span></p>
+                    <p class="card-text h3">제목: <span th:text="${taskTitle}"></span></p>
                     <hr class="my-4">
-                    <p class="card-text">내용: <span th:text="${task.content}"></span></p>
+                    <p class="card-text">내용: <span th:text="${taskContent}"></span></p>
                     <hr class="my-4">
 
                 </div>
                 <div class="card-footer">
-                    <div th:each="comment : ${task.comments}">
-                        <p class="card-text">댓글 작성자: <span th:text="${comment.memberId}"></span></p>
-                        <p class="card-text">댓글: <span th:text="${comment.content}"></span></p>
+                    <div th:each="comment : ${commentList}">
+                        <p class="card-text">댓글 작성자: <span th:text="${comment.commentId}"></span></p>
+                        <p class="card-text">댓글: <span th:text="${comment.commentContent}"></span></p>
 
-                        <div th:if="${comment.memberId == #authentication.principal.username}" class="mb-3">
-                            <a th:href="@{'/projects/'+${project.id}+'/tasks/' + ${task.id} + '/comments/' + ${comment.id} + '/edit'}"
+                        <div th:if="${comment.commentId == comment.commentWriteMemberId}" class="mb-3">
+                            <a th:href="@{'/projects/'+${projectId}+'/tasks/' + ${taskId} + '/comment/' + ${comment.id} + '/edit'}"
                                class="btn btn-sm btn-warning">댓글 수정</a>
 
-                            <a th:href="@{'/projects/'+${project.id}+'/tasks/' + ${task.id} + '/comments/' + ${comment.id} + '/delete'}"
+                            <a th:href="@{'/projects/'+${projectId}+'/tasks/' + ${taskId} + '/comment/' + ${comment.id} + '/delete'}"
                                class="btn btn-sm btn-danger">댓글 삭제</a>
                         </div>
                         <hr class="my-4">
                     </div>
 
-                    <form th:action="@{'/projects/'+${project.id}+'/tasks/' + ${task.id} + '/comments'}" method="post">
+                    <form th:action="@{'/projects/'+${projectId}+'/tasks/' + ${taskId} + '/comment'}" method="post">
                         <div class="form-group">
                             <label for="comment">댓글 추가:</label>
                             <input type="text" class="form-control" id="comment" name="comment" required>
