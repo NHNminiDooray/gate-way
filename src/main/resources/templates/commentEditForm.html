@@ -14,7 +14,7 @@
             <form th:action="@{'/projects/' + ${projectId}+'/tasks/'+${taskId}+'/comment'+${commentId}+'/edit'}" method="post">
                 <div class="form-floating mb-3">
                     <label>댓글</label>
-                    <input type="text" class="form-control" name="editedComment"  th:field="${comment.commentContent}" required>
+                    <input type="text" class="form-control" name="editedComment" required>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary mt-3 mb-3" type="submit">수정</button>
             </form>

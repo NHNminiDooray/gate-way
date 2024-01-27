@@ -32,7 +32,7 @@ public class MemberController {
     @PostMapping("/create")
     public String doCreateMember(CreateMemberDto createMemberDto){
         memberService.createMember(createMemberDto);
-        return "projectList";
+        return "redirect:/member/login";
 
     }
 
@@ -41,7 +41,7 @@ public class MemberController {
         memberService.loginMember(loginRequestDto);
         session.setAttribute("memberId", loginRequestDto.getMemberId());
 
-        return "member";
+        return "redirect:/projects";
     }
 
 }

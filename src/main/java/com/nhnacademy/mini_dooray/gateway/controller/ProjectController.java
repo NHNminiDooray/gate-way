@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/projects/register")
+@RequestMapping("/projects")
 @Slf4j
 public class ProjectController {
 
@@ -28,16 +28,19 @@ public class ProjectController {
     @GetMapping
     public String showProjects(Model model, HttpSession session) {
         String memberId = (String) session.getAttribute("memberId");
+        //TODO
+        //오류
         List<ProjectIndexListResponseDto> projectList = projectService.getAllProjects(new ProjectIndexListRequestDto(memberId));
+        log.info("projectList :{}",projectList);
         model.addAttribute("projectList", projectList);
         return "projectList";
     }
-    @GetMapping("/create")
+    @GetMapping("/register")
     public String showProjectRegistrationForm(Model model) {
         return "newproject";
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public String registerProject(Model model,
                                   @RequestParam Long projectStatusId,
                                   @RequestParam String projectName,
