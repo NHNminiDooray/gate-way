@@ -54,13 +54,13 @@ public class TaskTagMilestoneController {
         return  "newTaskMilestone";
     }
     @PostMapping("/milestone/add")
-    public String addMilestone(@PathVariable Long projectId, @PathVariable Long taskId) {
+    public String addMilestone(@PathVariable Long projectId, @PathVariable Long taskId,@RequestParam Long mileStoneId) {
         mileStoneService.addTaskMileStone(projectId,taskId,mileStoneId);
 
         return "redirect:/projects/" + projectId + "/tasks/" + taskId;
     }
     @DeleteMapping("/milestone/delete")
-    public String deleteTaskMilestone(@PathVariable Long projectId, @PathVariable Long taskId) {
+    public String deleteTaskMilestone(@PathVariable Long projectId, @PathVariable Long taskId,@RequestParam Long mileStoneId) {
         mileStoneService.deleteTaskMileStone(projectId,taskId,mileStoneId);
         return "redirect:/projects/" + projectId + "/tasks/" + taskId;
     }
