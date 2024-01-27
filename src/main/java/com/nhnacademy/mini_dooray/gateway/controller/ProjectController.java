@@ -1,8 +1,10 @@
 package com.nhnacademy.mini_dooray.gateway.controller;
 
+import com.nhnacademy.mini_dooray.gateway.dto.member.MemberIdsDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.exception.DuplicateMemberException;
+import com.nhnacademy.mini_dooray.gateway.service.MemberService;
 import com.nhnacademy.mini_dooray.gateway.service.ProjectService;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -20,9 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProjectController {
 
     private final ProjectService projectService;
+    private final MemberService memberService;
 
-    public ProjectController(ProjectService projectService) {
+
+    public ProjectController(ProjectService projectService, MemberService memberService) {
         this.projectService = projectService;
+        this.memberService = memberService;
     }
 
     @GetMapping
@@ -34,6 +39,10 @@ public class ProjectController {
     }
     @GetMapping("/create")
     public String showProjectRegistrationForm(Model model) {
+
+        MemberIdsDto memberIdsDto = memberService.getAllMembers();
+        model.addAttribute("memberIdsDto", memberIdsDto);
+
         return "newproject";
     }
 

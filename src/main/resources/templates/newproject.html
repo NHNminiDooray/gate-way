@@ -28,19 +28,19 @@
                 <div class="form-floating mt-5 mb-3">
                     <label>프로젝트 멤버 1 등록</label>
                     <select class="form-control" name="memberId1" required>
-                        <option th:each="member : ${registerRequestDto.requestMembers}" th:value="${member.projectMemberId}" th:text="${member.projectMemberId}"></option>
+                        <option th:each="memberId : ${memberIdsDto.memberIds}" th:value="${memberId}" th:text="${memberId}"></option>
                     </select>
                 </div>
                 <div class="form-floating mb-3">
                     <label>프로젝트 멤버 2 등록</label>
                     <select class="form-control" name="memberId2" required>
-                        <option th:each="member : ${registerRequestDto.requestMembers}" th:value="${member.projectMemberId}" th:text="${member.projectMemberId}"></option>
+                        <option th:each="memberId : ${memberIdsDto.memberIds}" th:value="${memberId}" th:text="${memberId}"></option>
                     </select>
                 </div>
                 <div class="form-floating mb-3">
                     <label>프로젝트 멤버 3 등록</label>
                     <select class="form-control" name="memberId3" required>
-                        <option th:each="member : ${registerRequestDto.requestMembers}" th:value="${member.projectMemberId}" th:text="${member.projectMemberId}"></option>
+                        <option th:each="memberId : ${memberIdsDto.memberIds}" th:value="${memberId}" th:text="${memberId}"></option>
                     </select>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary mt-3 mb-3" type="submit">등록</button>
