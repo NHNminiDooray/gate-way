@@ -36,10 +36,6 @@ public class TagMilestoneController {
 //        model.addAttribute("projectId", projectId);
         return "tagEditForm";
     }
-    @GetMapping("/tag/create")
-    public String showTagCreateForm(Model model, @PathVariable Long projectId, @RequestParam String milestoneName, @RequestParam String startDate, @RequestParam String endDate) {
-        return "";
-    }
     @PostMapping("/tag/create")
     public String createTag(Model model, @PathVariable Long projectId, @RequestParam String tagName) {
         tagService.createTag(projectId, tagName);
@@ -58,16 +54,11 @@ public class TagMilestoneController {
 
     @GetMapping("/milestone/edit/{milestoneId}")
     public String showMilestoneEditForm(Model model, @PathVariable Long projectId, @PathVariable Long milestoneId) {
-//        MilestoneDto milestone = milestoneService.getMilestone(milestoneId);
-//        model.addAttribute("milestone", milestone);
-//        model.addAttribute("projectId", projectId);
+        model.addAttribute("milestoneId", milestoneId);
+        model.addAttribute("projectId", projectId);
         return "milestoneEditForm";
     }
-    @GetMapping("/milestone/create")
-    public String showMilestoneCreateForm(Model model, @PathVariable Long projectId, @RequestParam String milestoneName, @RequestParam String startDate, @RequestParam String endDate) {
 
-        return "";
-    }
     @PostMapping("/milestone/create")
     public String createMilestone(Model model, @PathVariable Long projectId, @RequestParam String milestoneName, @RequestParam String startDate, @RequestParam String endDate) {
 //        milestoneService.createMilestone(projectId, milestoneName, startDate, endDate);
