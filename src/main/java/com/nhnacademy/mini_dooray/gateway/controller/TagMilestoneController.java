@@ -80,7 +80,7 @@ public class TagMilestoneController {
     }
     @PostMapping("/milestone/delete/{milestoneId}")
     public String deleteMilestone(Model model, @PathVariable Long projectId, @PathVariable Long milestoneId) {
-        mileStoneService.deleteMileStine(milestoneId);
+        mileStoneService.deleteMileStine(projectId,milestoneId);
         return "redirect:/projects/" + projectId + "/manage";
     }
 }
