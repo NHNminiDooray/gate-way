@@ -24,7 +24,7 @@ public interface TaskAdaptor {
 
     void deleteTag(Long tagOd);
 
-    void registerMileStone(TagRegisterRequestDto tagRegisterRequestDto);
+//    void registerMileStone(TagRegisterRequestDto tagRegisterRequestDto);
 
     void editMileStone(TagIndexRequestDto tagEditRequestDto);
 

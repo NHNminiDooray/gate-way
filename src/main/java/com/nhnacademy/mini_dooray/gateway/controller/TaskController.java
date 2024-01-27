@@ -6,9 +6,7 @@ import com.nhnacademy.mini_dooray.gateway.service.TaskService;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/projects/{projectId}/tasks")
@@ -36,9 +34,8 @@ public class TaskController {
     public String showTaskDetails(Model model, @PathVariable Long projectId, @PathVariable Long taskId) {
 
         //taskId로 TaskDetailResponseDto 받아서 모델로 넘겨주세영
-//        model.addAttribute("task", task);
+//        model.addAttribute("taskDetails", taskDetails);
 
         return "taskdetails";
     }
-
 }

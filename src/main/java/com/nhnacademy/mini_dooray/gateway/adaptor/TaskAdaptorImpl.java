@@ -126,10 +126,10 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                 Void.class);
     }
 
-    @Override
-    public void registerMileStone(TagRegisterRequestDto tagRegisterRequestDto) {
-
-    }
+//    @Override
+//    public void registerMileStone(TagRegisterRequestDto tagRegisterRequestDto) {
+//
+//    }
 
     @Override
     public void editMileStone(TagIndexRequestDto tagEditRequestDto) {
