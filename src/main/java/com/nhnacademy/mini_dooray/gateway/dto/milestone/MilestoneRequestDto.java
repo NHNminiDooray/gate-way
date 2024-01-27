@@ -9,7 +9,6 @@ import lombok.*;
 @Setter
 @ToString
 public class MilestoneRequestDto {
-    private Long taskId;
     private String milestoneName;
     private LocalDateTime startPeriod;
     private LocalDateTime endPeriod;

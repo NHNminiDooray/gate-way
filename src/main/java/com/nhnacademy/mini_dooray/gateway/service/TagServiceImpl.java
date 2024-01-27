@@ -1,8 +1,7 @@
 package com.nhnacademy.mini_dooray.gateway.service;
 
 import com.nhnacademy.mini_dooray.gateway.adaptor.TaskAdaptor;
-import com.nhnacademy.mini_dooray.gateway.dto.tag.TagIndexRequestDto;
-import com.nhnacademy.mini_dooray.gateway.dto.tag.TagRegisterRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.tag.TagRequestDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,14 +16,14 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public void createTag(Long projectId, String tagName) {
-        TagRegisterRequestDto tagRegisterRequestDto = new TagRegisterRequestDto(projectId,tagName);
-        taskAdaptor.registerTag(tagRegisterRequestDto);
+        TagRequestDto tagRequestDto = new TagRequestDto(tagName);
+        taskAdaptor.registerTag(projectId ,tagRequestDto);
     }
 
     @Override
     public void editTag(Long tagId, String newTagName) {
-        TagIndexRequestDto tagEditRequestDto = new TagIndexRequestDto(tagId,newTagName);
-        taskAdaptor.editTag(tagEditRequestDto);
+        TagRequestDto tagRequestDto = new TagRequestDto(newTagName);
+        taskAdaptor.editTag(tagId,tagRequestDto);
     }
 
     @Override

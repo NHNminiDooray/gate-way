@@ -4,9 +4,8 @@ import com.nhnacademy.mini_dooray.gateway.config.TaskAdaptorProperties;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectRegisterRequestDto;
-import com.nhnacademy.mini_dooray.gateway.dto.tag.TagIdDto;
 import com.nhnacademy.mini_dooray.gateway.dto.tag.TagIndexRequestDto;
-import com.nhnacademy.mini_dooray.gateway.dto.tag.TagRegisterRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.tag.TagRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
 import java.util.List;
@@ -82,13 +81,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
     }
 
     @Override
-    public void registerTag(TagRegisterRequestDto tagRegisterRequestDto) {
+    public void registerTag(Long projectId,TagRequestDto tagRequestDto) {
         String url = taskAdaptorProperties.getTaskUrl() + "";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<TagRegisterRequestDto> requestEntity = new HttpEntity<>(tagRegisterRequestDto, headers);
+        HttpEntity<TagRequestDto> requestEntity = new HttpEntity<>(tagRequestDto, headers);
         restTemplate.exchange(
                 url,
                 HttpMethod.PUT,
@@ -98,13 +97,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
 
     @Override
-    public void editTag(TagIndexRequestDto tagEditRequestDto) {
+    public void editTag(Long tagId, TagRequestDto tagRequestDto) {
         String url = taskAdaptorProperties.getTaskUrl() + "";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<TagIndexRequestDto> requestEntity = new HttpEntity<>(tagEditRequestDto, headers);
+        HttpEntity<TagRequestDto> requestEntity = new HttpEntity<>(tagRequestDto, headers);
         restTemplate.exchange(
                 url,
                 HttpMethod.PUT,

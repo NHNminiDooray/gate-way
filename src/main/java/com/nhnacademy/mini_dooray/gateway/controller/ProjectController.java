@@ -1,10 +1,13 @@
 package com.nhnacademy.mini_dooray.gateway.controller;
 
+import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectRegisterRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project_member.ProjectMemberRequestDto;
 import com.nhnacademy.mini_dooray.gateway.exception.DuplicateMemberException;
 import com.nhnacademy.mini_dooray.gateway.service.ProjectService;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,17 +19,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/projects/register")
 @Slf4j
-public class ProjectRegisterController {
+public class ProjectController {
 
     private final ProjectService projectService;
 
-    public ProjectRegisterController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
     }
 
     @GetMapping
+    public String showProjects(Model model, HttpSession session) {
+        String memberId = (String) session.getAttribute("memberId");
+        List<ProjectIndexListResponseDto> projectList = projectService.getAllProjects(new ProjectIndexListRequestDto(memberId));
+        model.addAttribute("projectList", projectList);
+        return "projectList";
+    }
+    @GetMapping
     public String showProjectRegistrationForm(Model model) {
-//        model.addAttribute("registerRequestDto", requestDto);
         return "newproject";
     }
 
