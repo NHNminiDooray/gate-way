@@ -1,10 +1,17 @@
 package com.nhnacademy.mini_dooray.gateway.service;
 
+import com.nhnacademy.mini_dooray.gateway.dto.manage.ManageListResponseDto;
+
 public interface TagService {
 
     void createTag(Long projectId, String tagName);
 
-    void editTag(Long tagId, String newTagName);
+    void editTag(Long projectId,Long tagId, String newTagName);
 
-    void deleteTag(Long tagId);
+    void deleteTag(Long projectId,Long tagId);
+
+    ManageListResponseDto manageList(Long projectId);
+
+    void addTaskTag(Long projectId,Long taskId,Long tagId);
+    void deleteTaskTag(Long projectId,Long taskId,Long tagId);
 }

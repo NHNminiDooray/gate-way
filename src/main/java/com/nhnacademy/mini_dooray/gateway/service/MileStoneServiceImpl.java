@@ -28,7 +28,17 @@ public class MileStoneServiceImpl implements MileStoneService{
 
 
     @Override
-    public void deleteMileStine(Long projectId, Long mileStoneId) {
+    public void deleteMileStone(Long projectId, Long mileStoneId) {
         taskAdaptor.deleteMileStone(projectId, mileStoneId);
+    }
+
+    @Override
+    public void addTaskMileStone(Long projectId, Long taskId, Long mileStoneId) {
+        taskAdaptor.addTaskMileStone(projectId,taskId,mileStoneId);
+    }
+
+    @Override
+    public void deleteTaskMileStone(Long projectId, Long taskId, Long mileStoneId) {
+        taskAdaptor.deleteTaskMileStone(projectId,taskId,mileStoneId);
     }
 }

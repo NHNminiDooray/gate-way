@@ -1,5 +1,8 @@
 package com.nhnacademy.mini_dooray.gateway.adaptor;
 
+import com.nhnacademy.mini_dooray.gateway.dto.comment.CommentModifyRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.comment.CommentRegisterRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.manage.ManageListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.milestone.MilestoneRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
@@ -24,11 +27,27 @@ public interface TaskAdaptor {
 
     void editTag(Long tagId, TagRequestDto tagRequestDto);
 
-    void deleteTag(Long tagOd);
+    void deleteTag(Long projectId,Long tagOd);
 
     void registerMileStone(Long projectId, MilestoneRequestDto milestoneRequestDto) ;
 
     void editMileStone(Long projectId, Long mileStoneId, MilestoneRequestDto milestoneRequestDto);
 
     void deleteMileStone(Long projectId, Long mileStoneId);
+
+    ManageListResponseDto manageList(Long projectId);
+
+    void addComment(Long projectId, Long taskId, CommentRegisterRequestDto commentRegisterRequestDto);
+
+    void editComment(Long projectId, Long taskId, CommentModifyRequestDto commentModifyRequestDto);
+
+    void deleteComment(Long projectId, Long taskId, Long commentId);
+
+    void addTaskTag(Long projectId, Long taskId, Long tagId);
+
+    void deleteTaskTag(Long projectId, Long taskId, Long tagId);
+
+    void addTaskMileStone(Long projectId, Long taskId, Long mileStoneId);
+
+    void deleteTaskMileStone(Long projectId, Long taskId, Long mileStoneId);
 }
