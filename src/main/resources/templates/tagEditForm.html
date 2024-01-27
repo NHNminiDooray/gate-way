@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>태그 수정</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <h1 class="h3 mt-5 mb-4 fw-normal">태그 수정</h1>
+            <form th:action="@{'/projects/' + ${projectId}+'/manage/tag/edit/'+${tag.tagId}}" method="post">
+                <div class="form-floating mb-3">
+                    <label>이름</label>
+                    <input type="text" class="form-control" name="milestoneName"  th:field="${tag.tagName}" required>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary mt-3 mb-3" type="submit">수정</button>
+            </form>
+            <p class="mt-4 mb-3 text-muted">© 2022-2024</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
