@@ -43,5 +43,9 @@ public class MemberController {
 
         return "redirect:/projects";
     }
-
+    @GetMapping("/logout")
+    public String doLogout(HttpSession session) {
+        session.removeAttribute("memberId");
+        return "redirect:/login";
+    }
 }
