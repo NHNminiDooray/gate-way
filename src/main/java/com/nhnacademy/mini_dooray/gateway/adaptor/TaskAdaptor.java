@@ -1,12 +1,12 @@
 package com.nhnacademy.mini_dooray.gateway.adaptor;
 
+import com.nhnacademy.mini_dooray.gateway.dto.milestone.MilestoneRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectRegisterRequestDto;
-import com.nhnacademy.mini_dooray.gateway.dto.tag.TagIndexRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.tag.TagRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
-import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
 import java.util.List;
 
 public interface TaskAdaptor {
@@ -16,7 +16,9 @@ public interface TaskAdaptor {
 
     void registerProject(ProjectRegisterRequestDto projectRegisterRequestDto);
 
-    List<TaskIndexListResponseDto> getAllTasks(TaskRequestDto taskRequestDto);
+    List<TaskIndexListResponseDto> getAllTasks(Long projectId);
+
+    TaskDetailResponseDto getTaskDetails(Long projectId,Long taskId);
 
     void registerTag(Long projectId, TagRequestDto tagRequestDto);
 
@@ -24,9 +26,9 @@ public interface TaskAdaptor {
 
     void deleteTag(Long tagOd);
 
-//    void registerMileStone(TagRegisterRequestDto tagRegisterRequestDto);
+    void registerMileStone(Long projectId, MilestoneRequestDto milestoneRequestDto) ;
 
-    void editMileStone(TagIndexRequestDto tagEditRequestDto);
+    void editMileStone(Long projectId, Long mileStoneId, MilestoneRequestDto milestoneRequestDto);
 
-    void deleteMileStone(Long mileStoneId);
+    void deleteMileStone(Long projectId, Long mileStoneId);
 }

@@ -1,12 +1,11 @@
 package com.nhnacademy.mini_dooray.gateway.controller;
 
-import com.nhnacademy.mini_dooray.gateway.dto.member.CreateMemberDto;
-import com.nhnacademy.mini_dooray.gateway.dto.member.LoginRequestDto;
 import com.nhnacademy.mini_dooray.gateway.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -29,16 +28,17 @@ public class MemberController {
         return "login";
     }
 
-    @PostMapping("/create")
-    public String doCreateMember(CreateMemberDto createMemberDto){
-        memberService.createMember(createMemberDto);
-        return "redirect:/member/login";
-    }
+//    @PostMapping("/create")
+//    public String doCreateMember(CreateMemberDto createMemberDto){
+//        memberService.createMember(createMemberDto);
+//        return "projectList";
+//
+//    }
 
-    @PostMapping("/login")
-    public String doLogin(LoginRequestDto loginRequestDto){
-        memberService.loginMember(loginRequestDto);
-        return "projectList";
-    }
+//    @PostMapping("/login")
+//    public String doLogin(LoginRequestDto loginRequestDto){
+//        memberService.loginMember(loginRequestDto);
+//        return "member";
+//    }
 
 }
