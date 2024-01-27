@@ -1,7 +1,7 @@
 package com.nhnacademy.mini_dooray.gateway.controller;
 
-import com.nhnacademy.mini_dooray.gateway.dto.ProjectIndexListRequestDto;
-import com.nhnacademy.mini_dooray.gateway.dto.ProjectIndexListResponseDto;
+import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.service.ProjectService;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -28,8 +28,5 @@ public class ProjectIndexListController {
         model.addAttribute("projectList", projectList);
         return "projectList";
     }
-//    @GetMapping("/create")
-//    public String showProjectCreationForm() {
-//        return "newproject";
-//    }
+
 }

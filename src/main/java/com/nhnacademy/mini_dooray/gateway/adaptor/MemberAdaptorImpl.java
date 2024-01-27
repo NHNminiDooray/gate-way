@@ -1,8 +1,8 @@
 package com.nhnacademy.mini_dooray.gateway.adaptor;
 
 import com.nhnacademy.mini_dooray.gateway.config.MemberAdaptorProperties;
-import com.nhnacademy.mini_dooray.gateway.dto.CreateMemberDto;
-import com.nhnacademy.mini_dooray.gateway.dto.LoginRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.member.CreateMemberDto;
+import com.nhnacademy.mini_dooray.gateway.dto.member.LoginRequestDto;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -25,7 +25,7 @@ public class MemberAdaptorImpl implements MemberAdaptor {
 
         HttpEntity<CreateMemberDto> requestEntity = new HttpEntity<>(createMemberDto, headers);
 
-        ResponseEntity<Void> responseEntity = restTemplate.exchange(
+        restTemplate.exchange(
                 url,
                 HttpMethod.POST,
                 requestEntity,
@@ -40,7 +40,7 @@ public class MemberAdaptorImpl implements MemberAdaptor {
 
         HttpEntity<LoginRequestDto> requestEntity = new HttpEntity<>(loginRequestDto, headers);
 
-        ResponseEntity<Void> responseEntity = restTemplate.exchange(
+        restTemplate.exchange(
                 url,
                 HttpMethod.POST,
                 requestEntity,

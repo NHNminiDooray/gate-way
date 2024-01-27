@@ -24,15 +24,15 @@
                 </thead>
                 <tbody>
                 <tr th:each="tag : ${tags}">
-                    <td th:text="${tag.tag}"></td>
+                    <td th:text="${tag.tagName}"></td>
                     <td>
-                        <form th:action="@{'/projects/'+${project.id}+'/tasks/'+${task.taskId}+'/comments/'+${tag.tagId}+'/edit'}"
+                        <form th:action="@{'/projects/'+${projectId}+'/manage/tag/edit'+${tag.tagId}}"
                               method="get">
                             <input class="btn btn-warning" type="submit" value="수정"/>
                         </form>
                     </td>
                     <td>
-                        <form th:action="@{'/projects/'+${project.id}+'/tasks/'+${task.taskId}+'/comments/'+${tag.tagId}+'/delete'}"
+                        <form th:action="@{'/projects/'+${projectId}+'/manage/tag/delete'+${tag.tagId}}"
                               method="post">
                             <input type="hidden" name="_method" value="delete"/>
                             <input class="btn btn-danger" type="submit" value="삭제"/>
@@ -42,7 +42,7 @@
                 </tbody>
             </table>
 
-            <form th:action="@{'/projects/'+${project.id}+'/tasks/'+${task.taskId}+'/comments'}" method="post">
+            <form th:action="@{'/projects/'+${projectId}+'/manage/tag/creat'}" method="post">
                 <h4 class="mt-3 mb-3">태그 등록</h4>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" th:name="tag" placeholder="태그">
@@ -65,16 +65,16 @@
                 </thead>
                 <tbody>
                 <tr th:each="milestone : ${milestones}">
-                    <td th:text="${milestone.milestoneName}"></td>
-                    <td th:text="${milestone.startDate}"></td>
-                    <td th:text="${milestone.endDate}"></td>
+                    <td th:text="${milestone.mileStoneName}"></td>
+                    <td th:text="${milestone.startPeriod.toLocalDate()}"></td>
+                    <td th:text="${milestone.endPeriod.toLocalDate()}"></td>
                     <td>
-                        <form th:action="@{'/projects/'+${project.id}+'/milestones/'+${milestone.milestoneId}+'/edit'}" method="get">
+                        <form th:action="@{'/projects/'+${projectId}+'/manage/milestone/edit'+${milestone.mileStoneId}}" method="get">
                             <input class="btn btn-warning" type="submit" value="수정"/>
                         </form>
                     </td>
                     <td>
-                        <form th:action="@{'/projects/'+${project.id}+'/milestones/'+${milestone.milestoneId}+'/delete'}" method="post">
+                        <form th:action="@{'/projects/'+${projectId}+'/manage/milestone/delete'+${milestone.mileStoneId}}" method="post">
                             <input type="hidden" name="_method" value="delete"/>
                             <input class="btn btn-danger" type="submit" value="삭제"/>
                         </form>
@@ -83,7 +83,7 @@
                 </tbody>
             </table>
 
-            <form th:action="@{'/projects/'+${project.id}+'/milestones'}" method="post">
+            <form th:action="@{'/projects/'+${projectId}+'/manage/milestone/creat'}" method="post">
                 <h4 class="mt-3 mb-3">마일스톤 등록</h4>
                 <div class="form-group">
                     <label for="milestoneName">마일스톤 이름</label>

@@ -1,4 +1,4 @@
-package com.nhnacademy.mini_dooray.gateway.dto;
+package com.nhnacademy.mini_dooray.gateway.dto.project;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ProjectRegisterRequestDto {
-    private Long projectStatusId;
+public class ProjectIndexListResponseDto {
+    private Long projectId;
     private String projectName;
 }

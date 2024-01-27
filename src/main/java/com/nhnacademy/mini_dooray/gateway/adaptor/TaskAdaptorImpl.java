@@ -1,8 +1,14 @@
 package com.nhnacademy.mini_dooray.gateway.adaptor;
 
 import com.nhnacademy.mini_dooray.gateway.config.TaskAdaptorProperties;
-import com.nhnacademy.mini_dooray.gateway.dto.ProjectIndexListRequestDto;
-import com.nhnacademy.mini_dooray.gateway.dto.ProjectIndexListResponseDto;
+import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
+import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectRegisterRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.tag.TagIdDto;
+import com.nhnacademy.mini_dooray.gateway.dto.tag.TagIndexRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.tag.TagRegisterRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
+import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -34,11 +40,120 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         ResponseEntity<List<ProjectIndexListResponseDto>> responseEntity = restTemplate.exchange(
                 url,
-                HttpMethod.POST,
+                HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<List<ProjectIndexListResponseDto>>() {
                 });
 
         return responseEntity.getBody();
     }
+
+    @Override
+    public void registerProject(ProjectRegisterRequestDto projectRegisterRequestDto) {
+        String url = taskAdaptorProperties.getTaskUrl() + "";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<ProjectRegisterRequestDto> requestEntity = new HttpEntity<>(projectRegisterRequestDto, headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                requestEntity,
+                Void.class);
+    }
+
+    @Override
+    public List<TaskIndexListResponseDto> getAllTasks(TaskRequestDto taskRequestDto) {
+        String url = taskAdaptorProperties.getTaskUrl() + "";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<TaskRequestDto> requestEntity = new HttpEntity<>(taskRequestDto, headers);
+
+        ResponseEntity<List<TaskIndexListResponseDto>> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<List<TaskIndexListResponseDto>>() {
+                });
+
+        return responseEntity.getBody();
+    }
+
+    @Override
+    public void registerTag(TagRegisterRequestDto tagRegisterRequestDto) {
+        String url = taskAdaptorProperties.getTaskUrl() + "";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<TagRegisterRequestDto> requestEntity = new HttpEntity<>(tagRegisterRequestDto, headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.PUT,
+                requestEntity,
+                Void.class);
+    }
+
+
+    @Override
+    public void editTag(TagIndexRequestDto tagEditRequestDto) {
+        String url = taskAdaptorProperties.getTaskUrl() + "";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<TagIndexRequestDto> requestEntity = new HttpEntity<>(tagEditRequestDto, headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.PUT,
+                requestEntity,
+                Void.class);
+    }
+
+    @Override
+    public void deleteTag(Long tagId) {
+        String url = taskAdaptorProperties.getTaskUrl() + "";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.DELETE,
+                requestEntity,
+                Void.class);
+    }
+
+    @Override
+    public void registerMileStone(TagRegisterRequestDto tagRegisterRequestDto) {
+
+    }
+
+    @Override
+    public void editMileStone(TagIndexRequestDto tagEditRequestDto) {
+
+    }
+
+    @Override
+    public void deleteMileStone(Long mileStoneId) {
+        String url = taskAdaptorProperties.getTaskUrl() + "";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.DELETE,
+                requestEntity,
+                Void.class);
+    }
 }
+
+
+
+
+

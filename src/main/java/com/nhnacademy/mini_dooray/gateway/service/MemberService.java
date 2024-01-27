@@ -1,11 +1,7 @@
 package com.nhnacademy.mini_dooray.gateway.service;
 
-<<<<<<<<< Temporary merge branch 1
-import com.nhnacademy.mini_dooray.gateway.dto.CreateMemberDto;
-=========
-import com.nhnacademy.mini_dooray.gateway.domain.CreateMemberDto;
-import com.nhnacademy.mini_dooray.gateway.domain.LoginRequestDto;
->>>>>>>>> Temporary merge branch 2
+import com.nhnacademy.mini_dooray.gateway.dto.member.CreateMemberDto;
+import com.nhnacademy.mini_dooray.gateway.dto.member.LoginRequestDto;
 
 public interface MemberService {
 
