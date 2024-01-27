@@ -5,6 +5,7 @@ import com.nhnacademy.mini_dooray.gateway.adaptor.MemberAdaptor;
 import com.nhnacademy.mini_dooray.gateway.dto.member.CreateMemberDto;
 
 import com.nhnacademy.mini_dooray.gateway.dto.member.LoginRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.member.MemberIdsDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,5 +26,10 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public void loginMember(LoginRequestDto loginRequestDto) {
         memberAdaptor.loginMember(loginRequestDto);
+    }
+
+    @Override
+    public MemberIdsDto getAllMembers() {
+        return memberAdaptor.getAllMembers();
     }
 }
