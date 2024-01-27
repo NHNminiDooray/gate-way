@@ -1,14 +1,12 @@
 package com.nhnacademy.mini_dooray.gateway.dto.task;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class TaskRequestDto {
     private Long projectId;
     private String taskTitle;

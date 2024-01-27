@@ -8,6 +8,6 @@ public interface MemberService {
 
     void createMember(CreateMemberDto createMemberDto);
 
-    void loginMember(LoginRequestDto loginRequestDto);
+//    void loginMember(LoginRequestDto loginRequestDto);
 
 }

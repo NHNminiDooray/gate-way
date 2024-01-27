@@ -32,7 +32,7 @@ public class ProjectRegisterController {
 
     @PostMapping
     public String registerProject(Model model,
-                                  @RequestParam Long status,
+                                  @RequestParam Long projectStatusId,
                                   @RequestParam String projectName,
                                   @RequestParam String memberId1,
                                   @RequestParam String memberId2,
@@ -44,7 +44,7 @@ public class ProjectRegisterController {
             }
             ProjectRegisterRequestDto requestDto =
                     new ProjectRegisterRequestDto(
-                            status,
+                            projectStatusId,
                             projectName,
                             List.of(new ProjectMemberRequestDto(memberId1,"멤버"),
                                     new ProjectMemberRequestDto(memberId2,"멤버"),

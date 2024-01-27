@@ -28,11 +28,12 @@
                     <td>
                         <a th:href="@{'/projects/' + ${projectId}+'/tasks/'+${task.taskId}}"><span
                                 th:text="${task.taskTitle}"></span></a>
+<!--                        폼으로 수정-->
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <form th:action="@{/task/register}" method="get" class="mb-3">
+            <form th:action="@{'/projects/' + ${projectId}+'/tasks/create'}" method="get" class="mb-3">
                 <input class="mt-3 btn btn-primary" type="submit" value="업무 등록"/>
             </form>
         </div>
