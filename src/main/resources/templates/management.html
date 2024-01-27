@@ -42,7 +42,7 @@
                 </tbody>
             </table>
 
-            <form th:action="@{'/projects/'+${projectId}+'/manage/tag/creat'}" method="post">
+            <form th:action="@{'/projects/'+${projectId}+'/manage/tag/create'}" method="post">
                 <h4 class="mt-3 mb-3">태그 등록</h4>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" th:name="tag" placeholder="태그">
@@ -83,7 +83,7 @@
                 </tbody>
             </table>
 
-            <form th:action="@{'/projects/'+${projectId}+'/manage/milestone/creat'}" method="post">
+            <form th:action="@{'/projects/'+${projectId}+'/manage/milestone/create'}" method="post">
                 <h4 class="mt-3 mb-3">마일스톤 등록</h4>
                 <div class="form-group">
                     <label for="milestoneName">마일스톤 이름</label>
