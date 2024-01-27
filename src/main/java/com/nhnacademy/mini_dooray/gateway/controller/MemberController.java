@@ -41,7 +41,7 @@ public class MemberController {
         memberService.loginMember(loginRequestDto);
         session.setAttribute("memberId", loginRequestDto.getMemberId());
 
-        return "member";
+        return "projectList";
     }
     @GetMapping("/logout")
     public String doLogout(HttpSession session) {
