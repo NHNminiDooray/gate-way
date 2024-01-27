@@ -1,14 +1,9 @@
 package com.nhnacademy.mini_dooray.gateway.adaptor;
 
 import com.nhnacademy.mini_dooray.gateway.config.MemberAdaptorProperties;
-import com.nhnacademy.mini_dooray.gateway.dto.CreateMemberDto;
-import com.nhnacademy.mini_dooray.gateway.dto.LoginRequestDto;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import com.nhnacademy.mini_dooray.gateway.dto.member.CreateMemberDto;
+import com.nhnacademy.mini_dooray.gateway.dto.member.LoginRequestDto;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,34 +16,16 @@ public class MemberAdaptorImpl implements MemberAdaptor {
         this.restTemplate = restTemplate;
         this.memberAdaptorProperties = memberAdaptorProperties;
     }
-//    @Override
-//    public LoginRequestDto getMember(String id) {
-//        String url = memberAdaptorProperties.getMemberUrl() + "/members/{id}";
-//
-//        ResponseEntity<LoginRequestDto> response = restTemplate.exchange(
-//                url,
-//                HttpMethod.GET,
-//                null,
-//                LoginRequestDto.class,
-//                id);
-//
-//        if (response.getStatusCode() != HttpStatus.OK) {
-//            throw new RuntimeException("Fail" + id);
-//        }
-//
-//        return response.getBody();
-//    }
 
     @Override
     public void createMember(CreateMemberDto createMemberDto) {
         String url = memberAdaptorProperties.getMemberUrl() + "/members/create";
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<CreateMemberDto> requestEntity = new HttpEntity<>(createMemberDto, headers);
 
-        ResponseEntity<Void> responseEntity = restTemplate.exchange(
+        restTemplate.exchange(
                 url,
                 HttpMethod.POST,
                 requestEntity,
@@ -58,17 +35,15 @@ public class MemberAdaptorImpl implements MemberAdaptor {
     @Override
     public void loginMember(LoginRequestDto loginRequestDto) {
         String url = memberAdaptorProperties.getMemberUrl() + "/members/login";
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<LoginRequestDto> requestEntity = new HttpEntity<>(loginRequestDto, headers);
 
-        ResponseEntity<Void> responseEntity = restTemplate.exchange(
+        restTemplate.exchange(
                 url,
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
     }
-
 }

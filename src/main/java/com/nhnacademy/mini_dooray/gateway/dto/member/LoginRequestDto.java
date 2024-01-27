@@ -1,4 +1,4 @@
-package com.nhnacademy.mini_dooray.gateway.dto;
+package com.nhnacademy.mini_dooray.gateway.dto.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
