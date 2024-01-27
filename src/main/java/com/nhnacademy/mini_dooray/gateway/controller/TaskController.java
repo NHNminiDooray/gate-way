@@ -2,7 +2,6 @@ package com.nhnacademy.mini_dooray.gateway.controller;
 
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
-import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
 import com.nhnacademy.mini_dooray.gateway.service.TaskService;
 import java.util.List;
 import org.springframework.stereotype.Controller;
@@ -35,5 +34,4 @@ public class TaskController {
         model.addAttribute("task", task);
         return "taskdetails";
     }
-    //todo
 }

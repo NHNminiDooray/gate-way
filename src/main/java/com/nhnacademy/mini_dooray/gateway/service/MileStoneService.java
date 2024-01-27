@@ -9,5 +9,9 @@ public interface MileStoneService {
 
     void editMileStone(Long projectId, Long milestoneId,String newMilestoneName,LocalDateTime startDate, LocalDateTime endDate);
 
-    void deleteMileStine(Long projectId, Long mileStoneId);
+    void deleteMileStone(Long projectId, Long mileStoneId);
+
+    void addTaskMileStone(Long projectId, Long taskId, Long mileStoneId);
+
+    void deleteTaskMileStone(Long projectId, Long taskId, Long mileStoneId);
 }

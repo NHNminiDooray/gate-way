@@ -29,7 +29,6 @@ public class TagMilestoneController {
         List<TagIndexRequestDto> tags = manageListResponseDto.getTagList();
         List<MileStoneIndexListResponseDto> milestones = manageListResponseDto.getMilestoneList();
 
-
         model.addAttribute("tags", tags);
         model.addAttribute("milestones", milestones);
         model.addAttribute("projectId", projectId);
@@ -78,7 +77,7 @@ public class TagMilestoneController {
     }
     @PostMapping("/milestone/delete/{milestoneId}")
     public String deleteMilestone(Model model, @PathVariable Long projectId, @PathVariable Long milestoneId) {
-        mileStoneService.deleteMileStine(projectId,milestoneId);
+        mileStoneService.deleteMileStone(projectId,milestoneId);
         return "redirect:/projects/" + projectId + "/manage";
     }
 }

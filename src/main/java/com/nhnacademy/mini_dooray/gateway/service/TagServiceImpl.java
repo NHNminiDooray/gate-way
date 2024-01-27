@@ -37,5 +37,13 @@ public class TagServiceImpl implements TagService {
         return taskAdaptor.manageList(projectId);
     }
 
+    @Override
+    public void addTaskTag(Long projectId, Long taskId, Long tagId) {
+        taskAdaptor.addTaskTag(projectId,taskId,tagId);
+    }
 
+    @Override
+    public void deleteTaskTag(Long projectId, Long taskId, Long tagId) {
+        taskAdaptor.deleteTaskTag(projectId,taskId,tagId);
+    }
 }

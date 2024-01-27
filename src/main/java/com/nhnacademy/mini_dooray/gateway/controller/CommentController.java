@@ -28,22 +28,19 @@ public class CommentController {
     public String showCommentEditForm(@PathVariable Long projectId, @PathVariable Long taskId, @PathVariable Long commentId, Model model) {
         model.addAttribute("projectId",projectId);
         model.addAttribute("taskId",taskId);
-
-        CommentResponseDto comment = new CommentResponseDto(commentId,"commentWriteMemberId","qwe");
-
-        model.addAttribute("comment",comment);
+        model.addAttribute("commentId",commentId);
         return "commentEditForm";
     }
     @PostMapping("/{commentId}/edit")
-    public String editComment(@PathVariable Long projectId, @PathVariable Long taskId, @PathVariable Long commentId, @RequestParam String editedComment, Model model) {
-
-        //TODO
-
+    public String editComment(@PathVariable Long projectId, @PathVariable Long taskId, @PathVariable Long commentId, @RequestParam String editedComment,HttpSession session, Model model) {
+        String memberId = (String) session.getAttribute("memberId");
+        commentService.editComment(projectId,taskId,memberId,commentId,editedComment);
         return "redirect:/projects/" + projectId + "/tasks/" + taskId;
     }
     @DeleteMapping("/{commentId}/delete")
     public String deleteComment(@PathVariable Long projectId, @PathVariable Long taskId, @PathVariable Long commentId, Model model) {
-        //TODO
+        commentService.deleteComment(projectId,taskId,commentId);
+
         return "redirect:/projects/" + projectId + "/tasks/" + taskId;
     }
 }

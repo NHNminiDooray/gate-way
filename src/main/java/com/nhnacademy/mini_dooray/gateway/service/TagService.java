@@ -11,4 +11,7 @@ public interface TagService {
     void deleteTag(Long projectId,Long tagId);
 
     ManageListResponseDto manageList(Long projectId);
+
+    void addTaskTag(Long projectId,Long taskId,Long tagId);
+    void deleteTaskTag(Long projectId,Long taskId,Long tagId);
 }

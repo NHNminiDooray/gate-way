@@ -1,6 +1,7 @@
 package com.nhnacademy.mini_dooray.gateway.adaptor;
 
 import com.nhnacademy.mini_dooray.gateway.config.TaskAdaptorProperties;
+import com.nhnacademy.mini_dooray.gateway.dto.comment.CommentModifyRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.comment.CommentRegisterRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.manage.ManageListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.milestone.MilestoneRequestDto;
@@ -221,6 +222,99 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                 requestEntity,
                 Void.class);
     }
+
+    @Override
+    public void editComment(Long projectId, Long taskId, CommentModifyRequestDto commentModifyRequestDto) {
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/{projectId}/tasks/{tasksId}/comments/{commentId}";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<CommentModifyRequestDto> requestEntity = new HttpEntity<>(commentModifyRequestDto,headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.PUT,
+                requestEntity,
+                Void.class);
+    }
+
+    @Override
+    public void deleteComment(Long projectId, Long taskId, Long commentId) {
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/{projectId}/tasks/{tasksId}/comments/{commentId}";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.PUT,
+                requestEntity,
+                Void.class);
+    }
+
+    @Override
+    public void addTaskTag(Long projectId, Long taskId, Long tagId) {
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/{projectId}/tags/tasks/{taskId}";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.PUT,
+                requestEntity,
+                Void.class);
+    }
+
+    @Override
+    public void deleteTaskTag(Long projectId, Long taskId, Long tagId) {
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/{projectId}/tasks/{taskId}/tags/{tagId}";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.DELETE,
+                requestEntity,
+                Void.class);
+    }
+
+    @Override
+    public void addTaskMileStone(Long projectId, Long taskId, Long mileStoneId) {
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/{projectId}/tasks/{taskId}/milestones/{milestoneId}";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.PUT,
+                requestEntity,
+                Void.class);
+    }
+
+
+    @Override
+    public void deleteTaskMileStone(Long projectId, Long taskId, Long mileStoneId) {
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/{projectId}/tasks/{taskId}/milestones/{milestoneId}";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        restTemplate.exchange(
+                url,
+                HttpMethod.DELETE,
+                requestEntity,
+                Void.class);
+    }
+
+
 }
 
 
