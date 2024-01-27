@@ -26,9 +26,11 @@
                 <tbody>
                 <tr th:each="task : ${taskList}">
                     <td>
-                        <a th:href="@{'/projects/' + ${projectId}+'/tasks/'+${task.taskId}}"><span
-                                th:text="${task.taskTitle}"></span></a>
-<!--                        폼으로 수정-->
+                        <form th:action="@{'/projects/' + ${projectId} + '/tasks/' + ${task.taskId}}" method="get">
+                            <button type="submit" class="btn btn-link">
+                                <span th:text="${task.taskTitle}"></span>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
