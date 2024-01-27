@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <h1 class="h3 mt-5 mb-4 fw-normal">업무 태그 관리</h1>
+            <label>태그 목록</label>
+            <table class="table table-bordered mb-5">
+                <thead class="thead-light">
+                <tr>
+                    <th>태그</th>
+                    <th>삭제</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tag : ${taskTagList}">
+                    <td th:text="${tag.tagName}"></td>
+                    <td>
+                        <form th:action="@{'/projects/'+${projectId}+'/tasks/'+${taskId}+'/manage/tag/delete/'+${tag.tagId}}"
+                              method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <input class="btn btn-danger" type="submit" value="삭제"/>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <form th:action="@{'/projects/'+${projectId}+'/tasks/'+${taskId}+'/manage/tag/add'}" method="post">
+                <div class="form-group">
+                    <label for="selectedTag">태그 추가:</label>
+                    <select class="form-control" id="selectedTag" name="selectedTag">
+                        <option value="">태그 선택</option>
+                        <option th:each="tag : ${tagList}" th:value="${tag.tagId}" th:text="${tag.tagName}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">추가</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
