@@ -7,11 +7,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class CommentRegisterRequestDto {
     private LocalDateTime commentCreatedAt;
     private String commentWriterMemberId;
     private String commentContent;
+
+    public CommentRegisterRequestDto(String commentWriterMemberId,
+                                     String commentContent) {
+        this.commentCreatedAt = LocalDateTime.now();
+        this.commentWriterMemberId = commentWriterMemberId;
+        this.commentContent = commentContent;
+    }
 }
