@@ -1,14 +1,12 @@
 package com.nhnacademy.mini_dooray.gateway.dto.project;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class ProjectIndexListResponseDto {
     private Long projectId;
     private String projectName;

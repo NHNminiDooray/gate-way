@@ -45,7 +45,7 @@
             <form th:action="@{'/projects/'+${projectId}+'/manage/tag/create'}" method="post">
                 <h4 class="mt-3 mb-3">태그 등록</h4>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" th:name="tag" placeholder="태그">
+                    <input type="text" class="form-control" th:name="tagName" placeholder="태그">
                     <div class="input-group-append">
                         <input class="btn btn-primary" type="submit" value="등록"/>
                     </div>

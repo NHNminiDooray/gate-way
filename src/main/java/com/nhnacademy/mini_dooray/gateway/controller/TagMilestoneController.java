@@ -25,6 +25,8 @@ public class TagMilestoneController {
 
     @GetMapping
     public String showManagementList(Model model, @PathVariable Long projectId) {
+        //TODO
+        //오류
         ManageListResponseDto manageListResponseDto = tagService.manageList(projectId);
         List<TagIndexRequestDto> tags = manageListResponseDto.getTagList();
         List<MileStoneIndexListResponseDto> milestones = manageListResponseDto.getMilestoneList();
@@ -43,6 +45,8 @@ public class TagMilestoneController {
 
     @PostMapping("/tag/create")
     public String createTag(Model model, @PathVariable Long projectId, @RequestParam String tagName) {
+        //TODO
+        //오류
         tagService.createTag(projectId, tagName);
         return "redirect:/projects/" + projectId + "/manage";
     }
