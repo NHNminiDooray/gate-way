@@ -21,9 +21,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="project : ${projectIndexList}">
+                <tr th:each="project : ${projectList}">
                     <td>
-                        <a th:href="@{'/projects/' + ${project.projectId}+'/tasks'}"><span th:text="${project.projectName}"></span></a>
+                        <form th:action="@{'/projects/' + ${project.projectId} + '/tasks'}" method="get">
+                            <button type="submit" class="btn btn-link">
+                                <span th:text="${project.projectName}"></span>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>

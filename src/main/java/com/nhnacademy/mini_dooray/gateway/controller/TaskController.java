@@ -32,4 +32,13 @@ public class TaskController {
 
         return "taskList";
     }
+    @GetMapping("/{taskId}")
+    public String showTaskDetails(Model model, @PathVariable Long projectId, @PathVariable Long taskId) {
+
+        //taskId로 TaskDetailResponseDto 받아서 모델로 넘겨주세영
+//        model.addAttribute("task", task);
+
+        return "taskdetails";
+    }
+
 }

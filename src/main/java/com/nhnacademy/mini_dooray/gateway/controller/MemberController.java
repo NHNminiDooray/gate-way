@@ -1,11 +1,6 @@
 package com.nhnacademy.mini_dooray.gateway.controller;
 
-import com.nhnacademy.mini_dooray.gateway.dto.member.CreateMemberDto;
-import com.nhnacademy.mini_dooray.gateway.dto.member.LoginRequestDto;
 import com.nhnacademy.mini_dooray.gateway.service.MemberService;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,27 +28,17 @@ public class MemberController {
         return "login";
     }
 
-    @PostMapping("/create")
-    public String doCreateMember(CreateMemberDto createMemberDto){
-        memberService.createMember(createMemberDto);
-        return "projectList";
-
-    }
+//    @PostMapping("/create")
+//    public String doCreateMember(CreateMemberDto createMemberDto){
+//        memberService.createMember(createMemberDto);
+//        return "projectList";
+//
+//    }
 
 //    @PostMapping("/login")
 //    public String doLogin(LoginRequestDto loginRequestDto){
 //        memberService.loginMember(loginRequestDto);
 //        return "member";
 //    }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-
-        return "redirect:/login";
-    }
 
 }
