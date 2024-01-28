@@ -26,7 +26,7 @@ public class TaskController {
         //TODO
         //오류
         List<TaskIndexListResponseDto> taskList = taskService.getAllTasks(projectId);
-
+        log.info("taskList : {}", taskList);
         model.addAttribute("projectId", projectId);
         model.addAttribute("taskList", taskList);
 
