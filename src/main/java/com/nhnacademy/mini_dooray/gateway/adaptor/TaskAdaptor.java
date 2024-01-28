@@ -8,6 +8,7 @@ import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectRegisterRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.tag.TagRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.tag.TaskManageListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
@@ -53,4 +54,6 @@ public interface TaskAdaptor {
     void deleteTaskMileStone(Long projectId, Long taskId, Long mileStoneId);
 
     void createTask(Long projectId, TaskRequestDto taskRequestDto);
+
+    TaskManageListResponseDto showTaskTag(Long projectId, Long taskId);
 }

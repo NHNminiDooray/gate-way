@@ -9,6 +9,7 @@ import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListRequestDto
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectRegisterRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.tag.TagRequestDto;
+import com.nhnacademy.mini_dooray.gateway.dto.tag.TaskManageListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
@@ -155,7 +156,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        HttpEntity<MilestoneRequestDto> requestEntity = new HttpEntity<>(milestoneRequestDto,headers);
         restTemplate.exchange(
                 url,
                 HttpMethod.POST,
@@ -324,6 +325,23 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
+    }
+
+    @Override
+    public TaskManageListResponseDto showTaskTag(Long projectId, Long taskId) {
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId+"/tasks/"+taskId+"/manage";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        ResponseEntity<TaskManageListResponseDto> responseEntity =
+                restTemplate.exchange(
+                        url,
+                        HttpMethod.GET,
+                        requestEntity,
+                        TaskManageListResponseDto.class);
+        return responseEntity.getBody();
     }
 
 }
