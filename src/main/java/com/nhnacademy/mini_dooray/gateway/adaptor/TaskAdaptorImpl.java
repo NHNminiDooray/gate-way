@@ -42,7 +42,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         ResponseEntity<List<ProjectIndexListResponseDto>> responseEntity = restTemplate.exchange(
                 url,
-                HttpMethod.GET,
+                HttpMethod.POST,
                 requestEntity,
                 new ParameterizedTypeReference<List<ProjectIndexListResponseDto>>() {
                 });
