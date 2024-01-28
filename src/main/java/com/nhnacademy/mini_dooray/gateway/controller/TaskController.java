@@ -24,6 +24,7 @@ public class TaskController {
 
     @GetMapping
     public String showTaskList(Model model, @PathVariable Long projectId) {
+        try {
         log.info("projectId : {}", projectId);
         //TODO
         //오류
@@ -33,6 +34,10 @@ public class TaskController {
         model.addAttribute("taskList", taskList);
 
         return "taskList";
+        } catch (Exception e) {
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects";
+        }
     }
 
     @GetMapping("/create")
@@ -43,16 +48,26 @@ public class TaskController {
     @PostMapping("/create")
     public String createTaskSave(Model model, @PathVariable Long projectId, @RequestParam String taskTitle, @RequestParam String taskContent,
                                  HttpSession session) {
+        try {
         Member member = (Member) session.getAttribute("member");
         taskService.createTask(projectId,taskTitle,taskContent,member.getMemberId());
         model.addAttribute("projectId", projectId);
         return "newtask";
+        } catch (Exception e) {
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects/" + projectId + "/tasks";
+        }
     }
     @GetMapping("/{taskId}")
     public String showTaskDetails(Model model, @PathVariable Long projectId, @PathVariable Long taskId) {
+        try {
         TaskDetailResponseDto taskDetail = taskService.getTaskDetails(projectId,taskId);
 
         model.addAttribute("taskDetails", taskDetail);
         return "taskdetails";
+        } catch (Exception e) {
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects/" + projectId + "/tasks";
+        }
     }
 }
