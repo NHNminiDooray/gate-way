@@ -19,8 +19,8 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         String contextPath = request.getContextPath();
 
         if (requestURI.equals(contextPath + "/member/login") ||
-                requestURI.equals(contextPath + "/member/create")) {
-
+                requestURI.equals(contextPath + "/member/create") ||
+                requestURI.equals(contextPath + "/member/logout")) {
             filterChain.doFilter(request, response);
             return;
         }
