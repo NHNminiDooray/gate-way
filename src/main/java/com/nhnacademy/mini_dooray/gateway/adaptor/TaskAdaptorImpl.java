@@ -34,7 +34,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public List<ProjectIndexListResponseDto> getAllProjects(ProjectIndexListRequestDto projectIndexListRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects";
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/list";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -52,7 +52,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void registerProject(ProjectRegisterRequestDto projectRegisterRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/list";
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
