@@ -33,6 +33,7 @@ public class ProjectController {
 
     @GetMapping
     public String showProjects(Model model, HttpSession session) {
+        try {
         Member member = (Member) session.getAttribute("member");
 
         List<ProjectIndexListResponseDto> projectList = projectService.getAllProjects(new ProjectIndexListRequestDto(
@@ -40,14 +41,22 @@ public class ProjectController {
         log.info("projectList :{}",projectList);
         model.addAttribute("projectList", projectList);
         return "projectList";
+        } catch (Exception e) {
+            log.error("error :{}",e.getMessage());
+            return "redirect:/member/login";
+        }
     }
     @GetMapping("/register")
     public String showProjectRegistrationForm(Model model) {
-
+        try {
         MemberIdsDto memberIdsDto = memberService.getAllMembers();
         model.addAttribute("memberIdsDto", memberIdsDto);
 
         return "newproject";
+        } catch (Exception e) {
+            log.error("error :{}",e.getMessage());
+            return "redirect:/projects";
+        }
     }
 
     @PostMapping("/register")
@@ -67,7 +76,8 @@ public class ProjectController {
 
             projectService.registerProject(projectStatusId,projectName,List.of(memberId1,memberId2,memberId3),member.getMemberId());
             return "redirect:/projects";
-        } catch (DuplicateMemberException e) {
+        } catch (Exception e) {
+            log.error("error :{}",e.getMessage());
             return "redirect:/projects/register";
         }
     }

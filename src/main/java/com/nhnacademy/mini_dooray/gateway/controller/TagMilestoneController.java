@@ -7,12 +7,14 @@ import com.nhnacademy.mini_dooray.gateway.service.MileStoneService;
 import com.nhnacademy.mini_dooray.gateway.service.TagService;
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/projects/{projectId}/manage")
+@Slf4j
 public class TagMilestoneController {
 
     private final TagService tagService;
@@ -25,6 +27,7 @@ public class TagMilestoneController {
 
     @GetMapping
     public String showManagementList(Model model, @PathVariable Long projectId) {
+        try {
         //TODO
         //오류
         ManageListResponseDto manageListResponseDto = tagService.manageList(projectId);
@@ -35,6 +38,10 @@ public class TagMilestoneController {
         model.addAttribute("milestones", milestones);
         model.addAttribute("projectId", projectId);
         return "management";
+        } catch (Exception e) {
+            log.error("error :{}",e.getMessage());
+            return "redirect:/member/create";
+        }
     }
     @GetMapping("/tag/edit/{tagId}")
     public String showTagEditForm(Model model, @PathVariable Long projectId, @PathVariable Long tagId) {
