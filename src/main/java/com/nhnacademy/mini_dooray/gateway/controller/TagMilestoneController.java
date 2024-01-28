@@ -28,21 +28,35 @@ public class TagMilestoneController {
     @GetMapping
     public String showManagementList(Model model, @PathVariable Long projectId) {
         try {
-        //TODO
-        //오류
-        ManageListResponseDto manageListResponseDto = tagService.manageList(projectId);
-        List<TagIndexRequestDto> tags = manageListResponseDto.getTagList();
-        List<MileStoneIndexListResponseDto> milestones = manageListResponseDto.getMilestoneList();
+            //TODO
+            //오류
+            ManageListResponseDto manageListResponseDto = tagService.manageList(projectId);
+            List<TagIndexRequestDto> tags = manageListResponseDto.getTagList();
+            List<MileStoneIndexListResponseDto> milestones = manageListResponseDto.getMilestoneList();
 
-        model.addAttribute("tags", tags);
-        model.addAttribute("milestones", milestones);
-        model.addAttribute("projectId", projectId);
-        return "management";
+            model.addAttribute("tags", tags);
+            model.addAttribute("milestones", milestones);
+            model.addAttribute("projectId", projectId);
+            return "management";
         } catch (Exception e) {
-            log.error("error :{}",e.getMessage());
-            return "redirect:/member/create";
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects/" + projectId + "/tasks";
         }
     }
+
+    @PostMapping("/tag/create")
+    public String createTag(Model model, @PathVariable Long projectId, @RequestParam String tagName) {
+        try {
+            //TODO
+            //오류
+            tagService.createTag(projectId, tagName);
+            return "redirect:/projects/" + projectId + "/manage";
+        } catch (Exception e) {
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects/" + projectId + "/manage";
+        }
+    }
+
     @GetMapping("/tag/edit/{tagId}")
     public String showTagEditForm(Model model, @PathVariable Long projectId, @PathVariable Long tagId) {
         model.addAttribute("tagId", tagId);
@@ -50,22 +64,37 @@ public class TagMilestoneController {
         return "tagEditForm";
     }
 
-    @PostMapping("/tag/create")
-    public String createTag(Model model, @PathVariable Long projectId, @RequestParam String tagName) {
-        //TODO
-        //오류
-        tagService.createTag(projectId, tagName);
-        return "redirect:/projects/" + projectId + "/manage";
-    }
     @PutMapping("/tag/edit/{tagId}")
     public String editTag(Model model, @PathVariable Long projectId, @PathVariable Long tagId, @RequestParam String newTagName) {
-       tagService.editTag(projectId,tagId, newTagName);
-        return "redirect:/projects/" + projectId + "/manage";
+        try {
+            tagService.editTag(projectId, tagId, newTagName);
+            return "redirect:/projects/" + projectId + "/manage";
+        } catch (Exception e) {
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects/" + projectId + "/manage/tag/edit" + tagId;
+        }
     }
+
     @DeleteMapping("/tag/delete/{tagId}")
     public String deleteTag(Model model, @PathVariable Long projectId, @PathVariable Long tagId) {
-        tagService.deleteTag(projectId, tagId);
-        return "redirect:/projects/" + projectId + "/manage";
+        try {
+            tagService.deleteTag(projectId, tagId);
+            return "redirect:/projects/" + projectId + "/manage";
+        } catch (Exception e) {
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects/" + projectId + "/manage";
+        }
+    }
+
+    @PostMapping("/milestone/create")
+    public String createMilestone(Model model, @PathVariable Long projectId, @RequestParam String milestoneName, @RequestParam LocalDateTime startDate, @RequestParam LocalDateTime endDate) {
+        try {
+            mileStoneService.createMilestone(projectId, milestoneName, startDate, endDate);
+            return "redirect:/projects/" + projectId + "/manage";
+        } catch (Exception e) {
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects/" + projectId + "/manage";
+        }
     }
 
     @GetMapping("/milestone/edit/{milestoneId}")
@@ -75,21 +104,27 @@ public class TagMilestoneController {
         return "milestoneEditForm";
     }
 
-    @PostMapping("/milestone/create")
-    public String createMilestone(Model model, @PathVariable Long projectId, @RequestParam String milestoneName, @RequestParam LocalDateTime startDate, @RequestParam LocalDateTime endDate) {
-        mileStoneService.createMilestone(projectId, milestoneName, startDate, endDate);
-        return "redirect:/projects/" + projectId + "/manage";
-    }
     @PostMapping("/milestone/edit/{milestoneId}")
     public String editMilestone(Model model, @PathVariable Long projectId, @PathVariable Long milestoneId, @RequestParam String newMilestoneName, @RequestParam
-                                LocalDateTime startDate,  @RequestParam LocalDateTime endDate) {
-        mileStoneService.editMileStone(projectId, milestoneId, newMilestoneName,startDate,endDate);
-        return "redirect:/projects/" + projectId + "/manage";
+    LocalDateTime startDate, @RequestParam LocalDateTime endDate) {
+        try {
+            mileStoneService.editMileStone(projectId, milestoneId, newMilestoneName, startDate, endDate);
+            return "redirect:/projects/" + projectId + "/manage";
+        } catch (Exception e) {
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects/" + projectId + "/manage/milestone/edit" + milestoneId;
+        }
     }
+
     @PostMapping("/milestone/delete/{milestoneId}")
     public String deleteMilestone(Model model, @PathVariable Long projectId, @PathVariable Long milestoneId) {
-        mileStoneService.deleteMileStone(projectId,milestoneId);
-        return "redirect:/projects/" + projectId + "/manage";
+        try {
+            mileStoneService.deleteMileStone(projectId, milestoneId);
+            return "redirect:/projects/" + projectId + "/manage";
+        } catch (Exception e) {
+            log.error("error :{}", e.getMessage());
+            return "redirect:/projects/" + projectId + "/manage";
+        }
     }
 }
 
