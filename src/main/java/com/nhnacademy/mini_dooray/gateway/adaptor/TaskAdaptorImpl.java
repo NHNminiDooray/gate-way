@@ -15,11 +15,7 @@ import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -69,7 +65,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public List<TaskIndexListResponseDto> getAllTasks(Long projectId) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" +projectId +"/tasks";
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tasks";
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -88,7 +84,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public TaskDetailResponseDto getTaskDetails(Long projectId, Long taskId) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId +"/tasks/" +taskId;
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tasks/" + taskId;
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -105,7 +101,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void registerTag(Long projectId, TagRequestDto tagRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" +projectId +"/tags";
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tags";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -120,8 +116,8 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
 
     @Override
-    public void editTag(Long projectId,Long tagId, TagRequestDto tagRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId +"/tags/"+ tagId;
+    public void editTag(Long projectId, Long tagId, TagRequestDto tagRequestDto) {
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tags/" + tagId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -136,7 +132,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void deleteTag(Long projectId, Long tagId) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId +"/tags/" +tagId;
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tags/" + tagId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -151,12 +147,12 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void registerMileStone(Long projectId, MilestoneRequestDto milestoneRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId+"/milestones";
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/milestones";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<MilestoneRequestDto> requestEntity = new HttpEntity<>(milestoneRequestDto,headers);
+        HttpEntity<MilestoneRequestDto> requestEntity = new HttpEntity<>(milestoneRequestDto, headers);
         restTemplate.exchange(
                 url,
                 HttpMethod.POST,
@@ -166,7 +162,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void editMileStone(Long projectId, Long mileStoneId, MilestoneRequestDto milestoneRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId+"/milestones/"+mileStoneId;
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/milestones/" + mileStoneId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -181,7 +177,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void deleteMileStone(Long projectId, Long mileStoneId) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId+"/milestones/"+mileStoneId;
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/milestones/" + mileStoneId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -196,7 +192,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public ManageListResponseDto manageList(Long projectId) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId+"/manage";
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/manage";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -213,12 +209,12 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void addComment(Long projectId, Long taskId, CommentRegisterRequestDto commentRegisterRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId+"/tasks/"+taskId+"/comments";
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tasks/" + taskId + "/comments";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<CommentRegisterRequestDto> requestEntity = new HttpEntity<>(commentRegisterRequestDto,headers);
+        HttpEntity<CommentRegisterRequestDto> requestEntity = new HttpEntity<>(commentRegisterRequestDto, headers);
         restTemplate.exchange(
                 url,
                 HttpMethod.POST,
@@ -227,13 +223,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
     }
 
     @Override
-    public void editComment(Long projectId, Long taskId, Long commentId,CommentModifyRequestDto commentModifyRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId+"/tasks/"+taskId+"/comments/"+ commentId;
+    public void editComment(Long projectId, Long taskId, Long commentId, CommentModifyRequestDto commentModifyRequestDto) {
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tasks/" + taskId + "/comments/" + commentId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<CommentModifyRequestDto> requestEntity = new HttpEntity<>(commentModifyRequestDto,headers);
+        HttpEntity<CommentModifyRequestDto> requestEntity = new HttpEntity<>(commentModifyRequestDto, headers);
         restTemplate.exchange(
                 url,
                 HttpMethod.PUT,
@@ -243,7 +239,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void deleteComment(Long projectId, Long taskId, Long commentId) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId+"/tasks/"+taskId+"/comments/"+commentId;
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tasks/" + taskId + "/comments/" + commentId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -251,21 +247,21 @@ public class TaskAdaptorImpl implements TaskAdaptor {
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
         restTemplate.exchange(
                 url,
-                HttpMethod.PUT,
+                HttpMethod.DELETE,
                 requestEntity,
                 Void.class);
     }
 
     @Override
     public void addTaskTag(Long projectId, Long taskId, Long tagId) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tags/tasks/" + taskId;
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tasks/" + taskId + "/tags/" + tagId;
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
         restTemplate.exchange(
                 url,
-                HttpMethod.PUT,
+                HttpMethod.POST,
                 requestEntity,
                 Void.class);
     }
@@ -293,7 +289,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
         restTemplate.exchange(
                 url,
-                HttpMethod.PUT,
+                HttpMethod.POST,
                 requestEntity,
                 Void.class);
     }
@@ -329,7 +325,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public TaskManageListResponseDto showTaskTag(Long projectId, Long taskId) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/"+projectId+"/tasks/"+taskId+"/manage";
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId + "/tasks/" + taskId + "/manage";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

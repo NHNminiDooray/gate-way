@@ -14,7 +14,7 @@
             <form th:action="@{'/projects/' + ${projectId}+'/manage/tag/edit/'+${tagId}}" method="post">
                 <div class="form-floating mb-3">
                     <label>태그 이름</label>
-                    <input type="text" class="form-control" name="tagName"  required>
+                    <input type="text" class="form-control" name="newTagName"  required>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary mt-3 mb-3" type="submit">수정</button>
             </form>

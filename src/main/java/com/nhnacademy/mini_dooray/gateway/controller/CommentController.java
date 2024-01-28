@@ -2,6 +2,7 @@ package com.nhnacademy.mini_dooray.gateway.controller;
 import com.nhnacademy.mini_dooray.gateway.dto.comment.CommentResponseDto;
 import com.nhnacademy.mini_dooray.gateway.security.Member;
 import com.nhnacademy.mini_dooray.gateway.service.CommentService;
+import java.time.LocalDateTime;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,11 +36,11 @@ public class CommentController {
     }
     @PostMapping("/{commentId}/edit")
     public String editComment(@PathVariable Long projectId, @PathVariable Long taskId, @PathVariable Long commentId, @RequestParam String editedComment,HttpSession session, Model model) {
-        String memberId = (String) session.getAttribute("memberId");
-        commentService.editComment(projectId,taskId,commentId,memberId,commentId,editedComment);
+        Member member = (Member) session.getAttribute("member");
+        commentService.editComment(projectId,taskId,commentId,member.getMemberId(),commentId,editedComment);
         return "redirect:/projects/" + projectId + "/tasks/" + taskId;
     }
-    @DeleteMapping("/{commentId}/delete")
+    @PostMapping("/{commentId}/delete")
     public String deleteComment(@PathVariable Long projectId, @PathVariable Long taskId, @PathVariable Long commentId, Model model) {
         commentService.deleteComment(projectId,taskId,commentId);
 

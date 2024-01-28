@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskManageListResponseDto {
-    List<TagIndexRequestDto> projedtTagList;
+    List<TagIndexRequestDto> projectTagList;
     List<TagIndexRequestDto> taskTagList;
 }

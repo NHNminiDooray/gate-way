@@ -36,7 +36,7 @@
             <form th:action="@{'/projects/'+${projectId}+'/tasks/'+${taskId}+'/manage/tag/add'}" method="post">
                 <div class="form-group">
                     <label for="selectedTag">태그 추가:</label>
-                    <select class="form-control" id="selectedTag" name="selectedTag">
+                    <select class="form-control" id="selectedTag" name="tagId">
                         <option value="">태그 선택</option>
                         <option th:each="tag : ${tagList}" th:value="${tag.tagId}" th:text="${tag.tagName}"></option>
                     </select>

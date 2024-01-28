@@ -1,17 +1,16 @@
 package com.nhnacademy.mini_dooray.gateway.dto.milestone;
 
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class MileStoneResponseDto {
+    private Long milestoneId;
     private LocalDateTime startPeriod;
     private LocalDateTime endPeriod;
 }
