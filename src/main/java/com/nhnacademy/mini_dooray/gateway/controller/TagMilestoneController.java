@@ -6,11 +6,14 @@ import com.nhnacademy.mini_dooray.gateway.dto.tag.TagIndexRequestDto;
 import com.nhnacademy.mini_dooray.gateway.service.MileStoneService;
 import com.nhnacademy.mini_dooray.gateway.service.TagService;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.NestedServletException;
 
 @Controller
 @RequestMapping("/projects/{projectId}/manage")
@@ -87,9 +90,12 @@ public class TagMilestoneController {
     }
 
     @PostMapping("/milestone/create")
-    public String createMilestone(Model model, @PathVariable Long projectId, @RequestParam String milestoneName, @RequestParam LocalDateTime startDate, @RequestParam LocalDateTime endDate) {
+    public String createMilestone(Model model, @PathVariable Long projectId, @RequestParam String milestoneName, @RequestParam Date startPeriod, @RequestParam Date endPeriod) {
+        log.info("startDate: {}", startPeriod);
+        log.info("endDate: {}", endPeriod);
         try {
-            mileStoneService.createMilestone(projectId, milestoneName, startDate, endDate);
+
+            mileStoneService.createMilestone(projectId, milestoneName, LocalDateTime.ofInstant(startPeriod.toInstant(), ZoneId.systemDefault()), LocalDateTime.ofInstant(endPeriod.toInstant(), ZoneId.systemDefault()));
             return "redirect:/projects/" + projectId + "/manage";
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());

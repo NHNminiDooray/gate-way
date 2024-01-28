@@ -22,27 +22,27 @@
                         <input class="mt-3 btn btn-primary" type="submit" value="태그 관리"/>
                     </form>
 
-                    <p class="card-text" th:text="${mileStone.startPeriod != null and mileStone.endPeriod != null ? '기간: ' + mileStone.startPeriod + ' ~ ' + mileStone.endPeriod : '기간: 없음'}"></p>
+                    <p class="card-text" th:text="${mileStone?.startPeriod != null and mileStone?.endPeriod != null ? '기간: ' + #temporal.format(mileStone.startPeriod, 'yyyy-MM-dd HH:mm') + ' ~ ' + #temporal.format(mileStone.endPeriod, 'yyyy-MM-dd HH:mm') : '기간: 없음'}"></p>
 
-                    <form th:unless="${mileStone.startPeriod != null and mileStone.endPeriod != null}" th:action="@{'/projects/' + ${projectId} + '/tasks/' + ${taskId} + '/manage/milestone'}" method="get" class="mb-3">
+                    <form th:unless="${mileStone?.startPeriod != null and mileStone?.endPeriod != null}" th:action="@{'/projects/' + ${projectId} + '/tasks/' + ${taskId} + '/manage/milestone'}" method="get" class="mb-3">
                         <input class="mt-3 btn btn-primary" type="submit" value="마일스톤 추가"/>
                     </form>
 
-                    <form th:if="${mileStone.startPeriod != null and mileStone.endPeriod != null}" th:action="@{'/projects/' + ${projectId} + '/tasks/' + ${taskId} + '/manage/milestone/delete'}" method="post" class="mb-3">
+                    <form th:if="${mileStone?.startPeriod != null and mileStone?.endPeriod != null}" th:action="@{'/projects/' + ${projectId} + '/tasks/' + ${taskId} + '/manage/milestone/delete'}" method="post" class="mb-3">
                         <input type="hidden" name="_method" value="delete"/>
                         <input class="mt-3 btn btn-danger" type="submit" value="마일스톤 삭제"/>
                     </form>
                 </div>
                 <div class="card-body">
-                    <p class="card-text h3">제목: <span th:text="${taskTitle}"></span></p>
+                    <p class="card-text h3">제목: <span th:text="${taskDetails.taskTitle}"></span></p>
                     <hr class="my-4">
-                    <p class="card-text">내용: <span th:text="${taskContent}"></span></p>
+                    <p class="card-text">내용: <span th:text="${taskDetails.taskContent}"></span></p>
                     <hr class="my-4">
 
                 </div>
                 <div class="card-footer">
-                    <div th:each="comment : ${commentList}">
-                        <p class="card-text">댓글 작성자: <span th:text="${comment.commentId}"></span></p>
+                    <div th:each="comment : ${taskDetails.commentList}">
+                        <p class="card-text">댓글 작성자: <span th:text="${comment.commentWriteMemberId}"></span></p>
                         <p class="card-text">댓글: <span th:text="${comment.commentContent}"></span></p>
 
                         <div th:if="${comment.commentId == comment.commentWriteMemberId}" class="mb-3">
