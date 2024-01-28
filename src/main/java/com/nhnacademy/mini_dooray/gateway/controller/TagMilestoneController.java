@@ -59,7 +59,7 @@ public class TagMilestoneController {
     }
     @PutMapping("/tag/edit/{tagId}")
     public String editTag(Model model, @PathVariable Long projectId, @PathVariable Long tagId, @RequestParam String newTagName) {
-       tagService.editTag(projectId,tagId, newTagName);
+       tagService.editTag(projectId,tagId,newTagName);
         return "redirect:/projects/" + projectId + "/manage";
     }
     @DeleteMapping("/tag/delete/{tagId}")
