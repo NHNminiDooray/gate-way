@@ -15,7 +15,7 @@
             <form th:action="@{'/projects/'+${projectId}+'/tasks/'+${taskId}+'/manage/milestone/add'}" method="post">
                 <div class="form-group">
                     <label for="selectedMilestone">마일스톤 추가:</label>
-                    <select class="form-control" id="selectedMilestone" name="selectedTag">
+                    <select class="form-control" id="selectedMilestone" name="milestoneId">
                         <option value="">마일스톤 선택</option>
                         <option th:each="milestone : ${milestoneList}" th:value="${milestone.milestoneId}" th:text="${milestone.startPeriod.toLocalDate()}+' ~ '+${milestone.endPeriod.toLocalDate()}"></option>
                     </select>

@@ -29,7 +29,6 @@ public class TaskController {
             //TODO
             //오류
             List<TaskIndexListResponseDto> taskList = taskService.getAllTasks(projectId);
-            log.info("taskList : {}", taskList);
             model.addAttribute("projectId", projectId);
             model.addAttribute("taskList", taskList);
 
@@ -61,10 +60,12 @@ public class TaskController {
     }
 
     @GetMapping("/{taskId}")
-    public String showTaskDetails(Model model, @PathVariable Long projectId, @PathVariable Long taskId) {
+    public String showTaskDetails(Model model, @PathVariable Long projectId, @PathVariable Long taskId , HttpSession session) {
         try {
             TaskDetailResponseDto taskDetail = taskService.getTaskDetails(projectId, taskId);
+            Member member = (Member) session.getAttribute("member");
 
+            model.addAttribute("loginMemberId", member.getMemberId());
             model.addAttribute("taskDetails", taskDetail);
             return "taskdetails";
         } catch (Exception e) {

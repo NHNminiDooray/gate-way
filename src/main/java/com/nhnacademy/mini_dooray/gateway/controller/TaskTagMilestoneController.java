@@ -2,9 +2,7 @@ package com.nhnacademy.mini_dooray.gateway.controller;
 
 import com.nhnacademy.mini_dooray.gateway.dto.manage.ManageListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.milestone.MileStoneIndexListResponseDto;
-import com.nhnacademy.mini_dooray.gateway.dto.tag.TagResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.tag.TaskManageListResponseDto;
-import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import com.nhnacademy.mini_dooray.gateway.service.MileStoneService;
 import com.nhnacademy.mini_dooray.gateway.service.TagService;
 import com.nhnacademy.mini_dooray.gateway.service.TaskService;
@@ -40,11 +38,11 @@ public class TaskTagMilestoneController {
             taskManageListResponseDto.getTaskTagList();
 
             model.addAttribute("taskTagList", taskManageListResponseDto.getTaskTagList());
-            model.addAttribute("tagList", taskManageListResponseDto.getProjedtTagList());
+            model.addAttribute("tagList", taskManageListResponseDto.getProjectTagList());
             return "taskTagManagement";
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());
-            return "redirect:/projects/" + projectId + "/tasks" + taskId;
+            return "redirect:/projects/" + projectId + "/tasks/" + taskId;
         }
     }
 
@@ -55,18 +53,18 @@ public class TaskTagMilestoneController {
             return "redirect:/projects/" + projectId + "/tasks/" + taskId;
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());
-            return "redirect:/projects/" + projectId + "/tasks" + taskId + "/tag";
+            return "redirect:/projects/" + projectId + "/tasks/" + taskId + "/manage/tag";
         }
     }
 
-    @DeleteMapping("/tag/delete/{tagId}")
+    @PostMapping("/tag/delete/{tagId}")
     public String deleteTag(@PathVariable Long projectId, @PathVariable Long taskId, @PathVariable Long tagId) {
         try {
             tagService.deleteTaskTag(projectId, taskId, tagId);
             return "redirect:/projects/" + projectId + "/tasks/" + taskId;
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());
-            return "redirect:/projects/" + projectId + "/tasks" + taskId + "/tag";
+            return "redirect:/projects/" + projectId + "/tasks/" + taskId + "/tag";
         }
     }
 
@@ -81,30 +79,31 @@ public class TaskTagMilestoneController {
             return "newTaskMilestone";
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());
-            return "redirect:/projects/" + projectId + "/tasks" + taskId;
+            return "redirect:/projects/" + projectId + "/tasks/" + taskId;
         }
     }
 
     @PostMapping("/milestone/add")
-    public String addMilestone(@PathVariable Long projectId, @PathVariable Long taskId, @RequestParam Long mileStoneId) {
+    public String addMilestone(@PathVariable Long projectId, @PathVariable Long taskId, @RequestParam Long milestoneId) {
+        log.info("milestoneId: {}", milestoneId);
         try {
-            mileStoneService.addTaskMileStone(projectId, taskId, mileStoneId);
+            mileStoneService.addTaskMileStone(projectId, taskId, milestoneId);
 
             return "redirect:/projects/" + projectId + "/tasks/" + taskId;
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());
-            return "redirect:/projects/" + projectId + "/tasks" + taskId + "/milestone";
+            return "redirect:/projects/" + projectId + "/tasks/" + taskId + "/milestone";
         }
     }
 
-    @DeleteMapping("/milestone/delete")
-    public String deleteTaskMilestone(@PathVariable Long projectId, @PathVariable Long taskId, @RequestParam Long mileStoneId) {
+    @PostMapping("/milestone/delete")
+    public String deleteTaskMilestone(@PathVariable Long projectId, @PathVariable Long taskId, @RequestParam Long milestoneId) {
         try {
-            mileStoneService.deleteTaskMileStone(projectId, taskId, mileStoneId);
+            mileStoneService.deleteTaskMileStone(projectId, taskId, milestoneId);
             return "redirect:/projects/" + projectId + "/tasks/" + taskId;
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());
-            return "redirect:/projects/" + projectId + "/tasks" + taskId + "/milestone";
+            return "redirect:/projects/" + projectId + "/tasks/" + taskId + "/milestone";
         }
     }
 }
