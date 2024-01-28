@@ -10,4 +10,6 @@ public interface TaskService {
     List<TaskIndexListResponseDto> getAllTasks(Long projectId);
 
     TaskDetailResponseDto getTaskDetails(Long projectId, Long taskId);
+
+    void createTask(Long projectId,String taskTitle,String taskContent,String memberID);
 }
