@@ -48,8 +48,7 @@ public class MemberAdaptorImpl implements MemberAdaptor {
                 HttpMethod.POST,
                 requestEntity,
                 Member.class);
-        Member member = responseEntity.getBody();
-        return member;
+        return responseEntity.getBody();
     }
 
 

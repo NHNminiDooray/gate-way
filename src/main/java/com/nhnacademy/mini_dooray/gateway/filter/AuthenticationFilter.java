@@ -1,5 +1,6 @@
 package com.nhnacademy.mini_dooray.gateway.filter;
 
+import com.nhnacademy.mini_dooray.gateway.security.Member;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
@@ -24,9 +25,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        Object memberId = request.getSession().getAttribute("memberId");
+        Member member = (Member) request.getSession().getAttribute("member");
 
-        if (memberId == null) {
+        if (member == null) {
             response.sendRedirect(request.getContextPath() + "/member/login");
             return;
         }
