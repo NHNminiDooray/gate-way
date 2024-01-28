@@ -313,8 +313,6 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                 requestEntity,
                 Void.class);
     }
-
-
 }
 
 
