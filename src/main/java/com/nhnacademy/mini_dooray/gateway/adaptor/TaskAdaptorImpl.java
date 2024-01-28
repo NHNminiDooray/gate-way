@@ -87,7 +87,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public TaskDetailResponseDto getTaskDetails(Long projectId, Long taskId) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId +" /tasks/" +taskId;
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId +"/tasks/" +taskId;
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -120,7 +120,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void editTag(Long projectId,Long tagId, TagRequestDto tagRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId +"+/tags/"+ tagId;
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/" + projectId +"/tags/"+ tagId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
