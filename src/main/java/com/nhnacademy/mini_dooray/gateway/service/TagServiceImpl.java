@@ -24,7 +24,7 @@ public class TagServiceImpl implements TagService {
     @Override
     public void editTag(Long projectId, Long tagId, String newTagName) {
         TagRequestDto tagRequestDto = new TagRequestDto(newTagName);
-        taskAdaptor.editTag(tagId,tagRequestDto);
+        taskAdaptor.editTag(projectId,tagId,tagRequestDto);
     }
 
     @Override

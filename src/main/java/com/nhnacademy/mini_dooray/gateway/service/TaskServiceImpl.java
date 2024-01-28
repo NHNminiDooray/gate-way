@@ -26,4 +26,12 @@ public class TaskServiceImpl implements TaskService{
         return taskAdaptor.getTaskDetails(projectId,taskId);
     }
 
+    @Override
+    public void createTask(Long projectId, String taskTitle, String taskContent, String memberID) {
+        TaskRequestDto taskRequestDto = new TaskRequestDto(projectId,taskTitle,taskContent,memberID);
+        taskAdaptor.createTask(projectId, taskRequestDto);
+
+    }
+
+
 }

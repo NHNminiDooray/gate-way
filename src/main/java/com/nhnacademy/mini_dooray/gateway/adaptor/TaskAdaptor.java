@@ -10,6 +10,7 @@ import com.nhnacademy.mini_dooray.gateway.dto.project.ProjectRegisterRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.tag.TagRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskIndexListResponseDto;
+import com.nhnacademy.mini_dooray.gateway.dto.task.TaskRequestDto;
 import java.util.List;
 
 public interface TaskAdaptor {
@@ -25,7 +26,7 @@ public interface TaskAdaptor {
 
     void registerTag(Long projectId, TagRequestDto tagRequestDto);
 
-    void editTag(Long tagId, TagRequestDto tagRequestDto);
+    void editTag(Long projectId,Long tagId, TagRequestDto tagRequestDto);
 
     void deleteTag(Long projectId,Long tagOd);
 
@@ -39,7 +40,7 @@ public interface TaskAdaptor {
 
     void addComment(Long projectId, Long taskId, CommentRegisterRequestDto commentRegisterRequestDto);
 
-    void editComment(Long projectId, Long taskId, CommentModifyRequestDto commentModifyRequestDto);
+    void editComment(Long projectId, Long taskId,Long commentId, CommentModifyRequestDto commentModifyRequestDto);
 
     void deleteComment(Long projectId, Long taskId, Long commentId);
 
@@ -50,4 +51,6 @@ public interface TaskAdaptor {
     void addTaskMileStone(Long projectId, Long taskId, Long mileStoneId);
 
     void deleteTaskMileStone(Long projectId, Long taskId, Long mileStoneId);
+
+    void createTask(Long projectId, TaskRequestDto taskRequestDto);
 }
