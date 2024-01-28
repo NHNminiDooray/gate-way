@@ -25,15 +25,15 @@ public class TaskController {
     @GetMapping
     public String showTaskList(Model model, @PathVariable Long projectId) {
         try {
-        log.info("projectId : {}", projectId);
-        //TODO
-        //오류
-        List<TaskIndexListResponseDto> taskList = taskService.getAllTasks(projectId);
-        log.info("taskList : {}", taskList);
-        model.addAttribute("projectId", projectId);
-        model.addAttribute("taskList", taskList);
+            log.info("projectId : {}", projectId);
+            //TODO
+            //오류
+            List<TaskIndexListResponseDto> taskList = taskService.getAllTasks(projectId);
+            log.info("taskList : {}", taskList);
+            model.addAttribute("projectId", projectId);
+            model.addAttribute("taskList", taskList);
 
-        return "taskList";
+            return "taskList";
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());
             return "redirect:/projects";
@@ -45,26 +45,28 @@ public class TaskController {
         model.addAttribute("projectId", projectId);
         return "newtask";
     }
+
     @PostMapping("/create")
     public String createTaskSave(Model model, @PathVariable Long projectId, @RequestParam String taskTitle, @RequestParam String taskContent,
                                  HttpSession session) {
         try {
-        Member member = (Member) session.getAttribute("member");
-        taskService.createTask(projectId,taskTitle,taskContent,member.getMemberId());
-        model.addAttribute("projectId", projectId);
-        return "newtask";
+            Member member = (Member) session.getAttribute("member");
+            taskService.createTask(projectId, taskTitle, taskContent, member.getMemberId());
+            model.addAttribute("projectId", projectId);
+            return "redirect:/projects/" + projectId + "/tasks";
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());
-            return "redirect:/projects/" + projectId + "/tasks";
+            return "redirect:/projects/" + projectId + "/tasks/create";
         }
     }
+
     @GetMapping("/{taskId}")
     public String showTaskDetails(Model model, @PathVariable Long projectId, @PathVariable Long taskId) {
         try {
-        TaskDetailResponseDto taskDetail = taskService.getTaskDetails(projectId,taskId);
+            TaskDetailResponseDto taskDetail = taskService.getTaskDetails(projectId, taskId);
 
-        model.addAttribute("taskDetails", taskDetail);
-        return "taskdetails";
+            model.addAttribute("taskDetails", taskDetail);
+            return "taskdetails";
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());
             return "redirect:/projects/" + projectId + "/tasks";
