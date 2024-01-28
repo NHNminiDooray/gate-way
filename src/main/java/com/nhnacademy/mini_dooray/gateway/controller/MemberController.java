@@ -2,6 +2,7 @@ package com.nhnacademy.mini_dooray.gateway.controller;
 
 import com.nhnacademy.mini_dooray.gateway.dto.member.CreateMemberDto;
 import com.nhnacademy.mini_dooray.gateway.dto.member.LoginRequestDto;
+import com.nhnacademy.mini_dooray.gateway.security.Member;
 import com.nhnacademy.mini_dooray.gateway.service.MemberService;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -38,14 +39,13 @@ public class MemberController {
 
     @PostMapping("/login")
     public String doLogin(LoginRequestDto loginRequestDto, HttpSession session){
-        memberService.loginMember(loginRequestDto);
-        session.setAttribute("memberId", loginRequestDto.getMemberId());
-
+        Member member = memberService.loginMember(loginRequestDto);
+        session.setAttribute("member", member);
         return "redirect:/projects";
     }
     @GetMapping("/logout")
     public String doLogout(HttpSession session) {
-        session.removeAttribute("memberId");
+        session.removeAttribute("member");
         return "redirect:/login";
     }
 }

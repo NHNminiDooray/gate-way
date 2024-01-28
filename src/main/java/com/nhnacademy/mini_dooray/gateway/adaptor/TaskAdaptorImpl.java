@@ -52,7 +52,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
     @Override
     public void registerProject(ProjectRegisterRequestDto projectRegisterRequestDto) {
-        String url = taskAdaptorProperties.getTaskUrl() + "/projects";
+        String url = taskAdaptorProperties.getTaskUrl() + "/projects/list";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

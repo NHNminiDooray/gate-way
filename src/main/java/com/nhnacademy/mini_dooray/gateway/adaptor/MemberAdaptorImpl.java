@@ -2,12 +2,13 @@ package com.nhnacademy.mini_dooray.gateway.adaptor;
 
 import com.nhnacademy.mini_dooray.gateway.config.MemberAdaptorProperties;
 import com.nhnacademy.mini_dooray.gateway.dto.member.CreateMemberDto;
+import com.nhnacademy.mini_dooray.gateway.security.Member;
 import com.nhnacademy.mini_dooray.gateway.dto.member.LoginRequestDto;
 import com.nhnacademy.mini_dooray.gateway.dto.member.MemberIdsDto;
-import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
 
 @Component
 public class MemberAdaptorImpl implements MemberAdaptor {
@@ -35,21 +36,24 @@ public class MemberAdaptorImpl implements MemberAdaptor {
     }
 
     @Override
-    public void loginMember(LoginRequestDto loginRequestDto) {
+    public Member loginMember(LoginRequestDto loginRequestDto) {
         String url = memberAdaptorProperties.getMemberUrl() + "/members/login";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<LoginRequestDto> requestEntity = new HttpEntity<>(loginRequestDto, headers);
 
-        restTemplate.exchange(
+        ResponseEntity<Member> responseEntity = restTemplate.exchange(
                 url,
                 HttpMethod.POST,
                 requestEntity,
-                Void.class);
+                Member.class);
+        Member member = responseEntity.getBody();
+        return member;
     }
 
-    @Override
+
+        @Override
     public MemberIdsDto getAllMembers() {
         String url = memberAdaptorProperties.getMemberUrl() + "/members";
         HttpHeaders headers = new HttpHeaders();
