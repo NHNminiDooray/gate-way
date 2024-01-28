@@ -3,6 +3,7 @@ package com.nhnacademy.mini_dooray.gateway.controller;
 import com.nhnacademy.mini_dooray.gateway.dto.manage.ManageListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.milestone.MileStoneIndexListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.tag.TagResponseDto;
+import com.nhnacademy.mini_dooray.gateway.dto.tag.TaskManageListResponseDto;
 import com.nhnacademy.mini_dooray.gateway.dto.task.TaskDetailResponseDto;
 import com.nhnacademy.mini_dooray.gateway.service.MileStoneService;
 import com.nhnacademy.mini_dooray.gateway.service.TagService;
@@ -34,12 +35,12 @@ public class TaskTagMilestoneController {
         try {
             model.addAttribute("projectId", projectId);
             model.addAttribute("taskId", taskId);
-//      api 추가
-            TaskDetailResponseDto taskDetailResponseDto = taskService.getTaskDetails(projectId, taskId);
-            List<TagResponseDto> taskTagList = taskDetailResponseDto.getTagList();
 
-            model.addAttribute("taskTagList", taskTagList);
-            model.addAttribute("tagList", taskTagList);
+            TaskManageListResponseDto taskManageListResponseDto = tagService.showTaskTag(projectId,taskId);
+            taskManageListResponseDto.getTaskTagList();
+
+            model.addAttribute("taskTagList", taskManageListResponseDto.getTaskTagList());
+            model.addAttribute("tagList", taskManageListResponseDto.getProjedtTagList());
             return "taskTagManagement";
         } catch (Exception e) {
             log.error("error :{}", e.getMessage());

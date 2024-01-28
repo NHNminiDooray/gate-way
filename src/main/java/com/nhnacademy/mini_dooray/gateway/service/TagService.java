@@ -1,6 +1,7 @@
 package com.nhnacademy.mini_dooray.gateway.service;
 
 import com.nhnacademy.mini_dooray.gateway.dto.manage.ManageListResponseDto;
+import com.nhnacademy.mini_dooray.gateway.dto.tag.TaskManageListResponseDto;
 
 public interface TagService {
 
@@ -14,4 +15,6 @@ public interface TagService {
 
     void addTaskTag(Long projectId,Long taskId,Long tagId);
     void deleteTaskTag(Long projectId,Long taskId,Long tagId);
+
+    TaskManageListResponseDto showTaskTag(Long projectId, Long taskId);
 }
