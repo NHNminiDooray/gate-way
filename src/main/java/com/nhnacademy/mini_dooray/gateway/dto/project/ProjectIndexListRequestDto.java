@@ -11,5 +11,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProjectIndexListRequestDto {
-    private String memberId;
+    private String memberName;
 }
