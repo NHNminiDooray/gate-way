@@ -9,5 +9,6 @@ public interface ProjectService {
 
     List<ProjectIndexListResponseDto> getAllProjects(ProjectIndexListRequestDto projectIndexListRequestDto);
 
-    void registerProject(Long projectStatusId, String projectName,List<String> memberIds);
+    void registerProject(Long projectStatusId, String projectName,List<String> memberIds,String adminMemberId);
+
 }
